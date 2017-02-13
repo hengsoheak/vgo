@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('css')
+<link href="{{asset('css/app.css')}}" rel="stylesheet">
+@stopsection;
 
 @section('content')
 <div class="container">
@@ -53,7 +56,11 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-                               <a href="redirect" class="btn btn btn-primary btn-lg">FB Login</a>
+
+                                <a href="redirect"  class="btn btn-block btn-social btn-facebook" >
+                                    <span class="fa fa-facebook"></span> Sign in with Facebook
+                                </a>
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -63,6 +70,12 @@
                                 </a>
                             </div>
 
+                        <div
+                             class="fb-like"
+                             data-share="true"
+                             data-width="450"
+                             data-show-faces="true">
+                        </div>
                         </div>
 
                     </form>
@@ -72,11 +85,5 @@
     </div>
 </div>
 
-<div
-        class="fb-like"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true">
-</div>
 
 @endsection
