@@ -1,6 +1,6 @@
 <?php namespace App\Models\SocialModels;
 
-use app\Models\MyModels;
+use App\Models\MyModels;
 
 class SocialAccount extends MyModels
 {
