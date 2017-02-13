@@ -22,12 +22,12 @@ class SocialAuthController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function callback($provider)
+    public function callback()
     {
 
         $providerUser = Socialite::driver('facebook')->stateless()->user();
 
-        $authUser = $this->_findOrCreateUser($providerUser, $provider);
+        $authUser = $this->_findOrCreateUser($providerUser);
 
         Auth::login($authUser, true);
 
@@ -35,7 +35,7 @@ class SocialAuthController extends Controller
 
     }
 
-    private function _findOrCreateUser($user, $provider)
+    private function _findOrCreateUser($user)
     {
         DB::beginTransaction();
         $authUser = User::where('email', $user->email)->first();
