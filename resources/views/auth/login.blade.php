@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
@@ -53,16 +53,16 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password
-                                </a>
+                               <a href="redirect" class="btn btn btn-primary btn-lg">FB Login</a>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <a href="redirect">FB Login</a>
+                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                    Forgot Your Password
+                                </a>
                             </div>
+
                         </div>
 
                     </form>
