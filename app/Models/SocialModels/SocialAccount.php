@@ -1,8 +1,8 @@
 <?php namespace App\Models\SocialModels;
 
-use app\Models\MyModel;
+use app\Models\MyModels;
 
-class SocialAccount extends MyModel
+class SocialAccount extends MyModels
 {
     protected $fillable = ['user_id', 'provider_user_id', 'provider'];
 
