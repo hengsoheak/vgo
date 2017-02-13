@@ -7,7 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\SocialModels\SocialAccount;
 use App\User;
 use DB;
-
+use Auth;
 
 class SocialAuthController extends Controller
 {
@@ -54,13 +54,13 @@ class SocialAuthController extends Controller
             $socialAccount = new SocialAccount();
             $socialAccount->provider = 'facebook';
             $socialAccount->provider_user_id = $user->id;
-            $socialAccount->user_id ;
+            $socialAccount->user_id = $users->id;
             $result = $socialAccount->save();
         }
         if(!is_array($result) && $result == true) {
 
             DB::commit();
-            return $result->attributes;
+            return  $socialAccount->attributes;//attributes;// $result->attributes;
         }
 
     }
