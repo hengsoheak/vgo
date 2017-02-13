@@ -28,7 +28,11 @@ return [
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],
-
+    'facebook' => [
+        'client_id' => '1216717078382739',
+        'client_secret' => '565b7feeaf5feab916af7d9545575eae',
+        'redirect' => 'http://camvgo.com/callback',
+    ],
     'stripe' => [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
