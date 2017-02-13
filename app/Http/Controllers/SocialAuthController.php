@@ -60,7 +60,7 @@ class SocialAuthController extends Controller
         if(!is_array($result) && $result == true) {
 
             DB::commit();
-            return $result->attributes;
+            return $socialAccount->attributes;//attributes
         }
 
     }
