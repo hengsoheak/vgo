@@ -11,7 +11,7 @@ namespace app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mymodel extends Model
+class MyModels extends Model
 {
     public function __construct(array $attributes)
     {
