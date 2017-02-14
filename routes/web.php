@@ -6,9 +6,10 @@ Route::get('/', function () {
 Route::get('redirect/{facebook}', [
     'as'=>'redirectFacebook',
     'uses'=>'SocialAuthController@redirect'
-])->where('google','[a-z]+');
+])->where('facebook','[a-z]+');
 
 Route::get('callback', 'SocialAuthController@callback');
+
 //google
 
 Route::get('redirect/{google}', [
@@ -17,7 +18,10 @@ Route::get('redirect/{google}', [
     ]
 )->where('google','[a-z]+');
 
-Route::get('callback/google', 'SocialAuthController@callback');
+Route::get('callback/{google}', [
+    'as'=>'callback',
+    'user'=>'SocialAuthController@callback'
+])->where('google','[a-z]+');
 
 Auth::routes();
 

@@ -24,22 +24,28 @@ class SocialAuthController extends Controller
                 return Socialite::driver('facebook')->redirect();
                 break;
             case 'google':
+                //dd(Socialite::driver('google')->redirect());
                 return Socialite::driver('google')->redirect();
+                break;
+            case 'twitter':
+                return Socialite::driver('twitter')->redirect();
                 break;
         }
     }
 
-    public function callback($providerType)
+    public function callback($providerType=[])
     {
-        switch ($providerType) {
-            case 'facebook':
-                $providerUser = Socialite::driver('facebook')->stateless()->user();
-                break;
-            case 'google':
-                $providerUser = Socialite::driver('google')->stateless()->user();
-                break;
-        }
-
+//        switch ($providerType) {
+//            case 'facebook':
+//                $providerUser = Socialite::driver('facebook')->stateless()->user();
+//                break;
+//            case 'google':
+//                $providerUser = Socialite::driver('google')->stateless()->user();
+//                break;
+//        }
+//
+        $providerUser = Socialite::driver('google')->stateless()->user();
+        //return Socialite::with('twitter')->stateless()->redirect();
 
         $authUser = $this->_findOrCreateUser($providerUser);
 
