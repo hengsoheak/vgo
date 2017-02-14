@@ -17,15 +17,35 @@ class SocialAuthController extends Controller
 
     }
 
-    public function redirect()
+    public function redirect($providerType)
     {
-        return Socialite::driver('facebook')->redirect();
+        switch ($providerType) {
+            case 'facebook':
+                return Socialite::driver('facebook')->redirect();
+                break;
+            case 'google':
+                //dd(Socialite::driver('google')->redirect());
+                return Socialite::driver('google')->redirect();
+                break;
+            case 'twitter':
+                return Socialite::driver('twitter')->redirect();
+                break;
+        }
     }
 
-    public function callback()
+    public function callback($providerType=[])
     {
-
-        $providerUser = Socialite::driver('facebook')->stateless()->user();
+//        switch ($providerType) {
+//            case 'facebook':
+//                $providerUser = Socialite::driver('facebook')->stateless()->user();
+//                break;
+//            case 'google':
+//                $providerUser = Socialite::driver('google')->stateless()->user();
+//                break;
+//        }
+//
+        $providerUser = Socialite::driver('google')->stateless()->user();
+        //return Socialite::with('twitter')->stateless()->redirect();
 
         $authUser = $this->_findOrCreateUser($providerUser);
 
@@ -38,6 +58,11 @@ class SocialAuthController extends Controller
     private function _findOrCreateUser($user)
     {
         DB::beginTransaction();
+
+        //1 check if empty email (user not provide email);
+        //2 check for provide company or provider name (facebook,twitter,google,...)
+        //3 checking for if they file on email and password. system will input or update too.
+
         $authUser = User::where('email', $user->email)->first();
         $result = [];
         if (!empty($authUser)) {
@@ -45,11 +70,15 @@ class SocialAuthController extends Controller
             return $authUser;
 
         }
+
+        //check if new we should register new user. we should let user register without password (email from social) and if they try to login with they password and email we will announce to them
+        //that your account was register without password so please file up your password
+
         $users = new user();
         $users->name = $user->name;
         $users->email = $user->email;
 
-        if($users->save()){
+        if ($users->save()) {
 
             $socialAccount = new SocialAccount();
             $socialAccount->provider = 'facebook';
@@ -57,10 +86,10 @@ class SocialAuthController extends Controller
             $socialAccount->user_id = $users->id;
             $result = $socialAccount->save();
         }
-        if(!is_array($result) && $result == true) {
+        if (!is_array($result) && $result == true) {
 
             DB::commit();
-            return $socialAccount->attributes;//attributes
+            return $socialAccount->attributes;
         }
 
     }

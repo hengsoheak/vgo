@@ -29,9 +29,14 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
     'facebook' => [
-        'client_id' => '1216717078382739',
-        'client_secret' => '565b7feeaf5feab916af7d9545575eae',
-        'redirect' => 'http://camvgo.com/callback',
+        'client_id' => '90205237294-l8sko5f8nctokmldut73ipsrku3kns6e.apps.googleusercontent.com',
+        'client_secret' => 'ay-DMR-rh3cWvvPl3lQDCMx5',
+        'redirect' => 'http://camvgo.com/callback/google',
+    ],
+    'google' => [
+        'client_id' => '90205237294-l8sko5f8nctokmldut73ipsrku3kns6e.apps.googleusercontent.com',
+        'client_secret' => 'ay-DMR-rh3cWvvPl3lQDCMx5',
+        'redirect' => 'http://camvgo.dev/callback',
     ],
     'stripe' => [
         'model' => App\User::class,

@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'CamVgo: Gift Card',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +168,8 @@ return [
          */
         //Laravel\Tinker\TinkerServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        //Laravel\Socialite\SocialiteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Application Service Providers...
