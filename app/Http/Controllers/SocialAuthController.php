@@ -54,7 +54,7 @@ class SocialAuthController extends Controller
 
     }
 
-    private function _findOrCreateUser($user,$providerType)
+    private function _findOrCreateUser($userProvider,$providerType)
     {
 //        User {#199 ▼
 //        +accessTokenResponseBody: array:4 [▼
@@ -129,7 +129,7 @@ class SocialAuthController extends Controller
         //2 check for provide company or provider name (facebook,twitter,google,...)
         //3 checking for if they file on email and password. system will input or update too.
 
-        $authUser = User::where('email', $user->email)->first();
+        $authUser = User::where('email', $userProvider->email)->first();
         $result = [];
         if (!empty($authUser)) {
             return $authUser;
@@ -148,17 +148,17 @@ class SocialAuthController extends Controller
         //that your account was register without password so please file up your password
 
         $users = new user();
-        $users->name = $user->name;
-        $users->email = $user->email;
+        $users->name = $userProvider->name;
+        $users->email = $userProvider->email;
 
         if ($users->save()) {
 
             $socialAccount = new SocialAccount();
-            $socialAccount->provider = 'facebook';
-            $socialAccount->provider_user_id = $user->id;
+            $socialAccount->provider = $providerType;
+            $socialAccount->provider_user_id = $userProvider->id;
             $socialAccount->user_id = $users->id;
-            $socialAccount->user_data = $users->user;
-            $socialAccount->avatar = $users->avatar;
+            $socialAccount->user_data = $userProvider->user;
+            $socialAccount->avatar = $userProvider->avatar;
 
             $result = $socialAccount->save();
         }
