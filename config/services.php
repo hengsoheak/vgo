@@ -36,7 +36,7 @@ return [
     'google' => [
         'client_id' => '90205237294-l8sko5f8nctokmldut73ipsrku3kns6e.apps.googleusercontent.com',
         'client_secret' => 'ay-DMR-rh3cWvvPl3lQDCMx5',
-        'redirect' => 'http://camvgo.dev/callback',
+        'redirect' => 'http://camvgo.com/callback',
     ],
     'stripe' => [
         'model' => App\User::class,
