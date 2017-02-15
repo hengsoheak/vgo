@@ -38,10 +38,11 @@ class SocialAuthController extends Controller
         switch ($providerType) {
             case 'facebook':
                 $providerUser = Socialite::driver('facebook')->stateless()->user();
+//		dd($providerUser);
                 break;
             case 'google':
                 $providerUser = Socialite::driver('google')->stateless()->user();
-                dd($providerUser);
+     //           dd($providerUser);
                 break;
         }
         //return Socialite::with('twitter')->stateless()->redirect();
