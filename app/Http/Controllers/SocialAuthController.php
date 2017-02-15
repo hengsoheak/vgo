@@ -7,6 +7,9 @@ use App\User;
 use DB;
 use Auth;
 Use Redirect;
+use Laracasts;
+
+
 class SocialAuthController extends Controller
 {
     //
