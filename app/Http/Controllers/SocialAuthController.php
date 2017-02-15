@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\SocialModels\SocialAccount;
@@ -9,15 +7,12 @@ use App\User;
 use DB;
 use Auth;
 Use Redirect;
-
 class SocialAuthController extends Controller
 {
     //
     public function __construct()
     {
-
     }
-
     public function redirect($providerType)
     {
         switch ($providerType) {
@@ -33,31 +28,27 @@ class SocialAuthController extends Controller
                 break;
         }
     }
-
     public function callback($providerType=[])
     {
         switch ($providerType) {
             case 'facebook':
                 $providerUser = Socialite::driver('facebook')->stateless()->user();
+//		dd($providerUser);
                 break;
             case 'google':
                 $providerUser = Socialite::driver('google')->stateless()->user();
-                //dd($providerUser);
+                //           dd($providerUser);
                 break;
         }
         //return Socialite::with('twitter')->stateless()->redirect();
-
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
         if(!$authUser){
             flash()->overlay('An account for that email already exists!', 'Error');
             return redirect('/home');
         }
         Auth::login($authUser, true);
-
         return redirect('/home');
-
     }
-
     private function _findOrCreateUser($userProvider,$providerType)
     {
 //        User {#199 ▼
@@ -104,7 +95,6 @@ class SocialAuthController extends Controller
 //    "verified" => false
 //  ]
 //}
-
 //        Facebook:
 //        User {#200 ▼
 //        +token: "EAABdevi4haIBACE9zAW3KhlMKMLBBdZACgnscupaWLSM5zwSwpADLrtrZCYVZB4bqGyEjjEI2SoNtN8Uef6qkz1KzyNvt30RvfcfxYdBKwd8ZBsX1gFVA2WBg9ZAjLHId1NegmF16AMyxmQq42PNNZAgJZBApel ▶"
@@ -126,50 +116,31 @@ class SocialAuthController extends Controller
 //  +"avatar_original": "https://graph.facebook.com/v2.8/103605850163217/picture?width=1920"
 //        +"profileUrl": "https://www.facebook.com/app_scoped_user_id/103605850163217/"
 //}
-
         DB::beginTransaction();
-
         //1 check if empty email (user not provide email);
         //2 check for provide company or provider name (facebook,twitter,google,...)
         //3 checking for if they file on email and password. system will input or update too.
-
         $authUser = User::where('email', $userProvider->email)->first();
-        $result = [];
-        if (!empty($authUser)) {
+        if (!empty($authUser) && count($authUser) == 0) {
             return $authUser;
         }
-
-//        switch ($providerType) {
-//            case 'facebook':
-//
-//                break;
-//            case 'google':
-//
-//                break;
-//        }
-
         //check if new we should register new user. we should let user register without password (email from social) and if they try to login with they password and email we will announce to them
         //that your account was register without password so please file up your password
-
         $users = new user();
         $users->name = $userProvider->name;
         $users->email = $userProvider->email;
-
         if ($users->save()) {
-
             $socialAccount = new SocialAccount();
             $socialAccount->provider = $providerType;
             $socialAccount->provider_user_id = $userProvider->id;
             $socialAccount->user_id = $users->id;
             $socialAccount->user_data = json_encode($userProvider->user);
             $socialAccount->avatar = strtolower($userProvider->avatar);
-
-        }
-        if ($socialAccount->save() == true) {
-
+            $socialAccount->save();
             DB::commit();
-            return $socialAccount->attributes;
+            return $users;
+        }else {
+            return ['result'=>true];
         }
-
     }
 }
