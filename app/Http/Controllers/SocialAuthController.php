@@ -155,7 +155,6 @@ class SocialAuthController extends Controller
         $users = new user();
         $users->name = $userProvider->name;
         $users->email = $userProvider->email;
-        $users->is_admin = 0;
 
         if ($users->save()) {
 
