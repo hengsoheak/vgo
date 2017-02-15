@@ -48,10 +48,10 @@ class SocialAuthController extends Controller
         //return Socialite::with('twitter')->stateless()->redirect();
 
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
-        if($providerType== 'google'){
-            dd($authUser);
+        if(!$authUser){
+            flash()->overlay('An account for that email already exists!', 'Error');
+            return Redirect::to('/home');
         }
-
         Auth::login($authUser, true);
 
         return redirect('/home');
