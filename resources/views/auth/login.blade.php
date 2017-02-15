@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-lg-10 col-md-10 sol-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-0">
+                            <div class="col-lg-10 col-md-10 sol-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2">
                                 <div class="row">
                                     <div class="panel-heading">
                                         <h4>You can click to login as below Social icone </h4>
@@ -81,7 +81,7 @@
                                             <span class="fa fa-google"></span> Sign in with Google
                                         </a>
                                     </div>
-                                    
+
                                     <!--
                                      <div class="col-xs-4 col-sm-2">
                                          <a class="btn btn-block btn-social btn-flickr" href="{{route('redirectFlickr',['flickr'])}}">
