@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index(){
-
+        flash()->overlay('An account for that email already exists!', 'Error');
         return view('FrontEnd.Home');
     }
 }

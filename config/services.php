@@ -29,14 +29,28 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
     'facebook' => [
-        'client_id' => '1216717078382739',
-        'client_secret' => '565b7feeaf5feab916af7d9545575eae',
-        'redirect' => 'http://camvgo.com/callback',
+        'client_id' => '102782740235682',
+        'client_secret' => '4ef4cebe7e4648aae71c624e7d45c481',
+        'redirect' => 'http://camvgo.com/callback/facebook',
+    ],
+    'google' => [
+        'client_id' => '90205237294-l8sko5f8nctokmldut73ipsrku3kns6e.apps.googleusercontent.com',
+        'client_secret' => 'ay-DMR-rh3cWvvPl3lQDCMx5',
+        'redirect' => 'http://camvgo.com/callback/google',
     ],
     'stripe' => [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'twitter' => [
+        'client_id' => '96XRrvkPk0EKb0JJJtJVtMjSd',
+        'client_secret' => '519akawAj4PZTWE4RfgOgiFY6z53pvqFVmpNddshypKwzJTO5T',
+        'redirect' => 'http://camvgo.com/callback/twitter',
+    ],
+    'flickr' => [
+        'client_id' => '7dd28fffc8dc72679008536f58e1c1a2',
+        'client_secret' => 'e47b563f6513bafa',
+        'redirect' => 'http://camvgo.com/callback/flickr',
+    ],
 ];

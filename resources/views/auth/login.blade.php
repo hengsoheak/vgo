@@ -1,7 +1,8 @@
 @extends('layouts.app')
+
 @section('css')
-<link href="{{asset('css/app.css')}}" rel="stylesheet">
-@stopsection;
+
+@endsection
 
 @section('content')
 <div class="container">
@@ -47,37 +48,51 @@
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                     </label>
+                                    <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                        Forgot Your Password
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
+                            <div class="col-lg-10 col-md-10 sol-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-0">
+                                <div class="row">
 
-                                <a href="redirect"  class="btn btn-block btn-social btn-facebook" >
-                                    <span class="fa fa-facebook"></span> Sign in with Facebook
-                                </a>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <button class="btn btn-block btn-social btn-facebook" type="submit">
+                                            <i class="fa fa-home"></i>CamVgo Login
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <a class="btn btn-block btn-social btn-facebook" href="{{route('redirectFacebook',['facebook'])}}">
+                                            <i class="fa fa-facebook"></i>Sign in with Facebook
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <a class="btn btn-block btn-social btn-twitter" href="{{route('redirectTwitter',['twitter'])}}">
+                                            <span class="fa fa-twitter"></span> Sign in with Twitter
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <a class="btn btn-block btn-social btn-google" href="{{route('redirectGoogle',['google'])}}">
+                                            <span class="fa fa-google"></span> Sign in with Google
+                                        </a>
+                                    </div>
+                                     <div class="col-xs-4 col-sm-2">
+                                         <a class="btn btn-block btn-social btn-flickr" href="{{route('redirectFlickr',['flickr'])}}">
+                                             <span class="fa fa-flickr"></span> Sign in with Flickr
+                                         </a>
+                                    </div>
 
+                                        <div class="col-xs-4 col-sm-2">
+                                            <a class="btn btn-block btn-social btn-vimeo" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-vimeo']);">
+                                                <span class="fa fa-vimeo-square"></span> Sign in with Vimeo
+                                            </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password
-                                </a>
-                            </div>
-
-                        <div
-                             class="fb-like"
-                             data-share="true"
-                             data-width="450"
-                             data-show-faces="true">
-                        </div>
-                        </div>
-
                     </form>
                 </div>
             </div>
