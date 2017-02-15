@@ -121,7 +121,7 @@ class SocialAuthController extends Controller
         //2 check for provide company or provider name (facebook,twitter,google,...)
         //3 checking for if they file on email and password. system will input or update too.
         $authUser = User::where('email', $userProvider->email)->first();
-        if (!empty($authUser) && count($authUser) == 0) {
+        if (!empty($authUser)) {
             return $authUser;
         }
         //check if new we should register new user. we should let user register without password (email from social) and if they try to login with they password and email we will announce to them
