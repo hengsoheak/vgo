@@ -27,6 +27,66 @@ Route::get('callback/{google}', [
     'user'=>'SocialAuthController@callback'
 ])->where('google','[a-z]+');
 
+//twitter
+
+Route::get('redirect/{twitter}', [
+        'as'=>'redirectTwitter',
+        'uses'=>'SocialAuthController@redirect'
+    ]
+)->where('twitter','[a-z]+');
+
+Route::get('callback/{twitter}', [
+    'as'=>'callbackTwitter',
+    'user'=>'SocialAuthController@callback'
+])->where('twitter','[a-z]+');
+
+//flickr
+
+Route::get('redirect/{flickr}', [
+        'as'=>'redirectFlickr',
+        'uses'=>'SocialAuthController@redirect'
+    ]
+)->where('flickr','[a-z]+');
+
+Route::get('callback/{flickr}', [
+    'as'=>'callbackFlickr',
+    'user'=>'SocialAuthController@callback'
+])->where('flickr','[a-z]+');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Auth::routes();
 
 Route::get('/home', 'Controller@index');

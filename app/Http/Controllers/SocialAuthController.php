@@ -26,6 +26,9 @@ class SocialAuthController extends Controller
             case 'twitter':
                 return Socialite::driver('twitter')->redirect();
                 break;
+            case 'flickr':
+                return Socialite::driver('flickr')->redirect();
+                break;
         }
     }
     public function callback($providerType=[])
@@ -33,14 +36,18 @@ class SocialAuthController extends Controller
         switch ($providerType) {
             case 'facebook':
                 $providerUser = Socialite::driver('facebook')->stateless()->user();
-//		dd($providerUser);
                 break;
             case 'google':
                 $providerUser = Socialite::driver('google')->stateless()->user();
-                //           dd($providerUser);
+                break;
+            case 'twitter':
+                $providerUser = Socialite::driver('twitter')->stateless()->user();
+                break;
+            case 'flickr':
+                $providerUser = Socialite::driver('flickr')->stateless()->user();
                 break;
         }
-        //return Socialite::with('twitter')->stateless()->redirect();
+
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
         if(!$authUser){
             flash()->overlay('An account for that email already exists!', 'Error');

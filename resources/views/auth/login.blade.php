@@ -70,7 +70,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-4 col-sm-2">
-                                        <a class="btn btn-block btn-social btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-twitter']);">
+                                        <a class="btn btn-block btn-social btn-twitter" href="{{route('redirectTwitter',['twitter'])}}">
                                             <span class="fa fa-twitter"></span> Sign in with Twitter
                                         </a>
                                     </div>
@@ -80,10 +80,11 @@
                                         </a>
                                     </div>
                                      <div class="col-xs-4 col-sm-2">
-                                         <a class="btn btn-block btn-social btn-instagram" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-instagram']);">
-                                             <span class="fa fa-instagram"></span> Sign in with Instagram
+                                         <a class="btn btn-block btn-social btn-flickr" href="{{route('redirectFlickr',['flickr'])}}">
+                                             <span class="fa fa-flickr"></span> Sign in with Flickr
                                          </a>
                                     </div>
+
                                         <div class="col-xs-4 col-sm-2">
                                             <a class="btn btn-block btn-social btn-vimeo" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-vimeo']);">
                                                 <span class="fa fa-vimeo-square"></span> Sign in with Vimeo
