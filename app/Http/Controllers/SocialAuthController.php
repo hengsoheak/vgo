@@ -42,14 +42,14 @@ class SocialAuthController extends Controller
                 break;
             case 'google':
                 $providerUser = Socialite::driver('google')->stateless()->user();
-                dd($providerUser);
+                //dd($providerUser);
                 break;
         }
         //return Socialite::with('twitter')->stateless()->redirect();
 
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
         if(!$authUser){
-            //flash()->overlay('An account for that email already exists!', 'Error');
+            flash()->overlay('An account for that email already exists!', 'Error');
             return redirect('/home');
         }
         Auth::login($authUser, true);
