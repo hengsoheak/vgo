@@ -41,6 +41,7 @@ class SocialAuthController extends Controller
                 break;
             case 'google':
                 $providerUser = Socialite::driver('google')->stateless()->user();
+                dd($providerUser);
                 break;
         }
         //return Socialite::with('twitter')->stateless()->redirect();
