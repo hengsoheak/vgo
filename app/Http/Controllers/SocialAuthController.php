@@ -50,8 +50,7 @@ class SocialAuthController extends Controller
 
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
         if(!$authUser){
-            //flash()->overlay('An account for that email already exists!', 'Error');
-          //  flash()->overlay('An account for that email already exists!', 'Error');
+            flash()->overlay('An account for that email already exists!', 'Error');
             return redirect('/home');
         }
         Auth::login($authUser, true);
@@ -136,19 +135,9 @@ class SocialAuthController extends Controller
         //3 checking for if they file on email and password. system will input or update too.
 
         $authUser = User::where('email', $userProvider->email)->first();
-        $result = [];
-        if (!empty($authUser)) {
+        if (!empty($authUser) && count($authUser) == 0) {
             return $authUser;
         }
-
-//        switch ($providerType) {
-//            case 'facebook':
-//
-//                break;
-//            case 'google':
-//
-//                break;
-//        }
 
         //check if new we should register new user. we should let user register without password (email from social) and if they try to login with they password and email we will announce to them
         //that your account was register without password so please file up your password
@@ -165,12 +154,13 @@ class SocialAuthController extends Controller
             $socialAccount->user_id = $users->id;
             $socialAccount->user_data = json_encode($userProvider->user);
             $socialAccount->avatar = strtolower($userProvider->avatar);
-
-        }
-        if ($socialAccount->save() == true) {
-
+            $socialAccount->save();
             DB::commit();
-            return $socialAccount->attributes;
+            return $socialAccount;git
+
+        }else {
+
+            return ['result'=>true];
         }
 
     }
