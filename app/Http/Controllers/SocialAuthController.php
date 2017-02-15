@@ -47,7 +47,7 @@ class SocialAuthController extends Controller
         }
         //return Socialite::with('twitter')->stateless()->redirect();
 
-        $authUser = $this->_findOrCreateUser($providerUser);
+        $authUser = $this->_findOrCreateUser($providerUser,$providerType);
 
         Auth::login($authUser, true);
 
@@ -55,8 +55,75 @@ class SocialAuthController extends Controller
 
     }
 
-    private function _findOrCreateUser($user)
+    private function _findOrCreateUser($user,$providerType)
     {
+//        User {#199 ▼
+//        +accessTokenResponseBody: array:4 [▼
+//    "access_token" => "ya29.GmLzAxIO6uuRfhixRpUjcluLq7DB1ok4hReSVkWzJdkjffejFIWXaDGXwWJ1qgqL8tC7lhroAbUWE_0GWBWU07o1qt7wjl3CG7T5hJ9B0xcLOkTjQ0RQqRMXOcvFhCdO44frHQ"
+//    "expires_in" => 3600
+//    "id_token" => "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgzYjhmMzE0MWQ0MTU0MjMxMThhZDIzMmFjN2IxYzdmYTdjYTRmMmQifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiaWF0IjoxNDg3MTI5NjA4LCJleHAiOjE0O ▶"
+//    "token_type" => "Bearer"
+//  ]
+//  +token: "ya29.GmLzAxIO6uuRfhixRpUjcluLq7DB1ok4hReSVkWzJdkjffejFIWXaDGXwWJ1qgqL8tC7lhroAbUWE_0GWBWU07o1qt7wjl3CG7T5hJ9B0xcLOkTjQ0RQqRMXOcvFhCdO44frHQ"
+//        +refreshToken: null
+//        +expiresIn: 3600
+//        +id: "110219420494656488573"
+//        +nickname: null
+//        +name: ""
+//        +email: "myadgogle@gmail.com"
+//        +avatar: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50"
+//        +user: array:13 [▼
+//    "kind" => "plus#person"
+//    "etag" => ""FT7X6cYw9BSnPtIywEFNNGVVdio/FyApRrC99qh_mWI-Obvenc1-1dU""
+//    "emails" => array:1 [▼
+//      0 => array:2 [▼
+//        "value" => "myadgogle@gmail.com"
+//        "type" => "account"
+//      ]
+//    ]
+//    "objectType" => "person"
+//    "id" => "110219420494656488573"
+//    "displayName" => ""
+//    "name" => array:2 [▼
+//      "familyName" => ""
+//      "givenName" => ""
+//    ]
+//    "image" => array:2 [▼
+//      "url" => "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50"
+//      "isDefault" => true
+//    ]
+//    "isPlusUser" => false
+//    "language" => "en"
+//    "ageRange" => array:1 [▼
+//      "min" => 21
+//    ]
+//    "circledByCount" => 0
+//    "verified" => false
+//  ]
+//}
+
+//        Facebook:
+//        User {#200 ▼
+//        +token: "EAABdevi4haIBACE9zAW3KhlMKMLBBdZACgnscupaWLSM5zwSwpADLrtrZCYVZB4bqGyEjjEI2SoNtN8Uef6qkz1KzyNvt30RvfcfxYdBKwd8ZBsX1gFVA2WBg9ZAjLHId1NegmF16AMyxmQq42PNNZAgJZBApel ▶"
+//        +refreshToken: null
+//        +expiresIn: "5183999"
+//        +id: "103605850163217"
+//        +nickname: null
+//        +name: "Riya Kh"
+//        +email: "riyakh02@gmail.com"
+//        +avatar: "https://graph.facebook.com/v2.8/103605850163217/picture?type=normal"
+//        +user: array:6 [▼
+//    "name" => "Riya Kh"
+//    "email" => "riyakh02@gmail.com"
+//    "gender" => "female"
+//    "verified" => true
+//    "link" => "https://www.facebook.com/app_scoped_user_id/103605850163217/"
+//    "id" => "103605850163217"
+//  ]
+//  +"avatar_original": "https://graph.facebook.com/v2.8/103605850163217/picture?width=1920"
+//        +"profileUrl": "https://www.facebook.com/app_scoped_user_id/103605850163217/"
+//}
+
         DB::beginTransaction();
 
         //1 check if empty email (user not provide email);
@@ -66,10 +133,17 @@ class SocialAuthController extends Controller
         $authUser = User::where('email', $user->email)->first();
         $result = [];
         if (!empty($authUser)) {
-
             return $authUser;
-
         }
+
+//        switch ($providerType) {
+//            case 'facebook':
+//
+//                break;
+//            case 'google':
+//
+//                break;
+//        }
 
         //check if new we should register new user. we should let user register without password (email from social) and if they try to login with they password and email we will announce to them
         //that your account was register without password so please file up your password
@@ -84,6 +158,9 @@ class SocialAuthController extends Controller
             $socialAccount->provider = 'facebook';
             $socialAccount->provider_user_id = $user->id;
             $socialAccount->user_id = $users->id;
+            $socialAccount->user_data = $users->user;
+            $socialAccount->avatar = $users->avatar;
+
             $result = $socialAccount->save();
         }
         if (!is_array($result) && $result == true) {
