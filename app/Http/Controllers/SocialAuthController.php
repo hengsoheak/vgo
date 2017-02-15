@@ -49,7 +49,7 @@ class SocialAuthController extends Controller
 
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
         if(!$authUser){
-            flash()->overlay('An account for that email already exists!', 'Error');
+          //  flash()->overlay('An account for that email already exists!', 'Error');
             return Redirect::to('/home');
         }
         Auth::login($authUser, true);
