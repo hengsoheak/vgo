@@ -156,7 +156,7 @@ class SocialAuthController extends Controller
             $socialAccount->avatar = strtolower($userProvider->avatar);
             $socialAccount->save();
             DB::commit();
-            return $socialAccount;git
+            return $users;
 
         }else {
 
