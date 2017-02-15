@@ -8,6 +8,7 @@ use App\Models\SocialModels\SocialAccount;
 use App\User;
 use DB;
 use Auth;
+Use Redirect;
 
 class SocialAuthController extends Controller
 {
@@ -48,8 +49,8 @@ class SocialAuthController extends Controller
 
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
         if(!$authUser){
-            flash()->overlay('An account for that email already exists!', 'Error');
-            return Redirect::to('/home');
+            //flash()->overlay('An account for that email already exists!', 'Error');
+            return redirect('/home');
         }
         Auth::login($authUser, true);
 
@@ -163,9 +164,8 @@ class SocialAuthController extends Controller
             $socialAccount->user_data = json_encode($userProvider->user);
             $socialAccount->avatar = strtolower($userProvider->avatar);
 
-            $result = $socialAccount->save();
         }
-        if (!is_array($result) && $result == true) {
+        if ($socialAccount->save() == true) {
 
             DB::commit();
             return $socialAccount->attributes;
