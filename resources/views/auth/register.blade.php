@@ -67,6 +67,52 @@
                                 </button>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-10 col-md-10 sol-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2">
+                                <div class="row">
+                                    <div class="panel-heading">
+                                        <h4>You can click to login as below Social icone </h4>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <button class="btn btn-block btn-social btn-facebook" type="submit">
+                                            <i class="fa fa-home"></i>CamVgo Login
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <a class="btn btn-block btn-social btn-facebook" href="{{route('redirectFacebook',['facebook'])}}">
+                                            <i class="fa fa-facebook"></i>Sign in with Facebook
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <a class="btn btn-block btn-social btn-twitter" href="{{route('redirectTwitter',['twitter'])}}">
+                                            <span class="fa fa-twitter"></span> Sign in with Twitter
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <a class="btn btn-block btn-social btn-google" href="{{route('redirectGoogle',['google'])}}">
+                                            <span class="fa fa-google"></span> Sign in with Google
+                                        </a>
+                                    </div>
+
+                                <!--
+                                     <div class="col-xs-4 col-sm-2">
+                                         <a class="btn btn-block btn-social btn-flickr" href="{{route('redirectFlickr',['flickr'])}}">
+                                             <span class="fa fa-flickr"></span> Sign in with Flickr
+                                         </a>
+                                    </div>
+                                    -->
+
+                                    <div class="col-xs-4 col-sm-2">
+                                            <a class="btn btn-block btn-social btn-vimeo" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-vimeo']);">
+                                                <span class="fa fa-vimeo-square"></span> Sign in with Vimeo
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
                     </form>
                 </div>
             </div>
