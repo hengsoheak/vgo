@@ -79,11 +79,11 @@
                                             <span class="fa fa-google"></span> Sign in with Google
                                         </a>
                                     </div>
-                                     <div class="col-xs-4 col-sm-2">
-                                         <a class="btn btn-block btn-social btn-flickr" href="{{route('redirectFlickr',['flickr'])}}">
-                                             <span class="fa fa-flickr"></span> Sign in with Flickr
-                                         </a>
-                                    </div>
+                                     {{--<div class="col-xs-4 col-sm-2">--}}
+                                         {{--<a class="btn btn-block btn-social btn-flickr" href="{{route('redirectFlickr',['flickr'])}}">--}}
+                                             {{--<span class="fa fa-flickr"></span> Sign in with Flickr--}}
+                                         {{--</a>--}}
+                                    {{--</div>--}}
 
                                         <div class="col-xs-4 col-sm-2">
                                             <a class="btn btn-block btn-social btn-vimeo" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-vimeo']);">
