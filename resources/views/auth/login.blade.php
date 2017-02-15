@@ -58,7 +58,9 @@
                         <div class="form-group">
                             <div class="col-lg-10 col-md-10 sol-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-0">
                                 <div class="row">
-
+                                    <div class="panel-heading">
+                                        <h4>You can click to login as below Social icone </h4>
+                                    </div>
                                     <div class="col-xs-4 col-sm-2">
                                         <button class="btn btn-block btn-social btn-facebook" type="submit">
                                             <i class="fa fa-home"></i>CamVgo Login
