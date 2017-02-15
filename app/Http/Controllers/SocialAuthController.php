@@ -8,6 +8,7 @@ use App\Models\SocialModels\SocialAccount;
 use App\User;
 use DB;
 use Auth;
+Use Redirect;
 
 class SocialAuthController extends Controller
 {
@@ -51,7 +52,7 @@ class SocialAuthController extends Controller
         if(!$authUser){
             //flash()->overlay('An account for that email already exists!', 'Error');
           //  flash()->overlay('An account for that email already exists!', 'Error');
-            return Redirect::to('/home');
+            return redirect('/home');
         }
         Auth::login($authUser, true);
 
