@@ -47,6 +47,9 @@ class SocialAuthController extends Controller
         //return Socialite::with('twitter')->stateless()->redirect();
 
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);
+        if($providerType== 'google'){
+            dd($authUser);
+        }
 
         Auth::login($authUser, true);
 
