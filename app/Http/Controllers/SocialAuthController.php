@@ -16,8 +16,8 @@ class SocialAuthController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('xss');
-        $this->middleware('auth');
+//        $this->middleware('xss');
+//        $this->middleware('auth');
     }
 
     public function redirect($providerType)
