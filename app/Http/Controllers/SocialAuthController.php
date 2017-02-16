@@ -38,7 +38,7 @@ class SocialAuthController extends Controller
                     'site' => 'http://camvgo.com'
                 ];
                 $config = new \SocialiteProviders\Manager\Config($clientId, $clientSecret, $redirectUrl,$additionalProviderConfig);//$additionalProviderConfig
-                return Socialite::driver('facebook')->setConfig($config)->redirect();
+                return Socialite::with('facebook')->setConfig($config)->redirect();
 
                 //return Socialite::driver('facebook')->redirect();
                 break;
