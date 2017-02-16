@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,6 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    private $_data = [];
     public function __construct()
     {
         //$this->middleware('auth');
@@ -18,7 +20,8 @@ class Controller extends BaseController
 
 
     public function index(){
-        flash()->overlay('An account for that email already exists!', 'Error');
-        return view('FrontEnd.Home');
+
+        $this->_data['users']=  User::with(['SocialAccount'])->where('id',Auth::user()->id)->first();
+        return view('FrontEnd.Home',$this->_data);
     }
 }
