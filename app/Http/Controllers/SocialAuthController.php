@@ -132,53 +132,46 @@ class SocialAuthController extends Controller
 //  +"avatar_original": "https://graph.facebook.com/v2.8/103605850163217/picture?width=1920"
 //        +"profileUrl": "https://www.facebook.com/app_scoped_user_id/103605850163217/"
 //}
+
         DB::beginTransaction();
+
         //1 check if empty email (user not provide email);
         //2 check for provide company or provider name (facebook,twitter,google,...)
         //3 checking for if they file on email and password. system will input or update too.
 
-        $authUser = User::with(['SocialAccount' => function ($q) use ($providerType) {
+        $users = User::with(['SocialAccount' => function ($q) use ($providerType) {
             $q->where('provider', $providerType);
         }])->where('email', $userProvider->email)->first();
 
-        if (!empty($authUser)) {
+        if(!empty($users)) {
 
-            if ((int)count($authUser->SocialAccount) == (int)0) {
-
-                $this->createSocislAccount($authUser, $userProvider, $providerType);
-
+            if ((int)count($users->SocialAccount) == (int)0) {
+                $this->createSocislAccount($users, $userProvider, $providerType);
             }
-            return $authUser;
+        }else{
+
+            $users = new User();
         }
 
-        $users = new user();
         $users->name = $userProvider->name;
         $users->email = $userProvider->email;
-
         if ($users->save()) {
 
             $this->createSocislAccount($users, $userProvider, $providerType);
             DB::commit();
             return $users;
-
-        } else {
-            return ['result' => true];
         }
+        return $users;
     }
 
     private function createSocislAccount($users , $userProvider, $providerType)
     {
 
         $findExistingAcc = SocialAccount::where('user_id', $users->id)->first();
-
         $socialAccount = new SocialAccount();
-
         if ((int)count($findExistingAcc) > (int)0) {
-            dd($findExistingAcc->id);
             $socialAccount = SocialAccount::where('id', $findExistingAcc->id)->first();
-
         }
-
         $socialAccount->provider = $providerType;
         $socialAccount->provider_user_id = $userProvider->id;
         $socialAccount->user_id = $users->id;
