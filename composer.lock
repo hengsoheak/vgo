@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "92ef3aad4f0ea52143f0b9cbb970fad3",
-    "content-hash": "53c5f4acf5d50444b6950cfc39d699e3",
+    "hash": "a0db0571e957e0d0607f928618d9c67c",
+    "content-hash": "3fff126dfaa7657d5badb16d9656f35a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1398,6 +1398,43 @@
                 }
             ],
             "description": "Google OAuth2 Provider for Laravel Socialite",
+            "time": "2017-01-25 09:48:29"
+        },
+        {
+            "name": "socialiteproviders/linkedin",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/LinkedIn.git",
+                "reference": "d4f38e4c63e311af91f1428f6393c9ffd1c6fe01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/LinkedIn/zipball/d4f38e4c63e311af91f1428f6393c9ffd1c6fe01",
+                "reference": "d4f38e4c63e311af91f1428f6393c9ffd1c6fe01",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\LinkedIn\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "LinkedIn OAuth2 Provider for Laravel Socialite",
             "time": "2017-01-25 09:48:29"
         },
         {

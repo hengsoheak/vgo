@@ -29,6 +29,9 @@ class SocialAuthController extends Controller
             case 'twitter':
                 return Socialite::driver('twitter')->redirect();
                 break;
+            case 'linkedin':
+                return Socialite::driver('linkedin')->redirect();
+                break;
         }
     }
     public function callback($providerType=[])
@@ -42,6 +45,9 @@ class SocialAuthController extends Controller
                 break;
             case 'twitter':
                 $providerUser = Socialite::driver('twitter')->stateless()->user();
+                break;
+            case 'linkedin':
+                $providerUser = Socialite::driver('linkedin')->stateless()->user();
                 break;
 
         }

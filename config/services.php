@@ -48,5 +48,10 @@ return [
         'client_secret' => '519akawAj4PZTWE4RfgOgiFY6z53pvqFVmpNddshypKwzJTO5T',
         'redirect' => 'http://camvgo.com/callback/twitter',
     ],
+    'linkedin' => [
+        'client_id' => '81e08f89cqv33m',
+        'client_secret' => 'UHJzfdd8QVgMuZHO',
+        'redirect' => 'http://camvgo.com/callback/linkedin',
+    ],
 
 ];

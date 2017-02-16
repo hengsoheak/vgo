@@ -61,45 +61,41 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <div class="col-lg-10 col-md-10 sol-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2">
                                 <div class="row">
                                     <div class="panel-heading">
-                                        <h4>You can click to login as below Social icone </h4>
+                                        <h4>You can also register by click below social button </h4>
                                     </div>
-                                    <div class="col-xs-4 col-sm-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                                         <button class="btn btn-block btn-social btn-facebook" type="submit">
-                                            <i class="fa fa-home"></i>CamVgo Login
+                                            <i class="fa fa-home"></i>CamVgo
                                         </button>
                                     </div>
-                                    <div class="col-xs-4 col-sm-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                                         <a class="btn btn-block btn-social btn-facebook" href="{{route('redirectFacebook',['facebook'])}}">
-                                            <i class="fa fa-facebook"></i>Sign in with Facebook
+                                            <i class="fa fa-facebook"></i>Facebook
                                         </a>
                                     </div>
-                                    <div class="col-xs-4 col-sm-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                                         <a class="btn btn-block btn-social btn-twitter" href="{{route('redirectTwitter',['twitter'])}}">
-                                            <span class="fa fa-twitter"></span> Sign in with Twitter
+                                            <span class="fa fa-twitter"></span>Twitter
                                         </a>
                                     </div>
-                                    <div class="col-xs-4 col-sm-2">
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                                         <a class="btn btn-block btn-social btn-google" href="{{route('redirectGoogle',['google'])}}">
-                                            <span class="fa fa-google"></span> Sign in with Google
+                                            <span class="fa fa-google"></span>Google
                                         </a>
                                     </div>
 
+                                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                        <a class="btn btn-block btn-social btn-linkedin" href="{{route('redirectLinkedin',['linkedin'])}}">
+                                            <span class="fa fa-linkedin"></span> linkedin
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        
                     </form>
                 </div>
             </div>
