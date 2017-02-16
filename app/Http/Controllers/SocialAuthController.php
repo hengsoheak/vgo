@@ -165,13 +165,17 @@ class SocialAuthController extends Controller
     private function createSocislAccount ($users=null, $userProvider=null, $providerType=null){
 
         $findExistingAcc = SocialAccount::where('user_id', $users->id)->first();
-        $socialAccount = new SocialAccount();
-        if(count($findExistingAcc) < 1 ) {
+        
+	$socialAccount = new SocialAccount();
+
+	//dd(count($findExistingAcc));
+
+        if(count($findExistingAcc) > 0 ) {
 
             $socialAccount = SocialAccount::find($findExistingAcc->id);
 
         }
-
+//	dd($socialAccount);
         $socialAccount->provider = $providerType;
         $socialAccount->provider_user_id = $userProvider->id;
         $socialAccount->user_id = $users->id;
