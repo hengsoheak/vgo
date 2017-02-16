@@ -6,8 +6,8 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
 
-                        {{dd($users->first()->SocialAccount->avatar)}}
-                    
+                    @foreach($users as $user);
+                            {{dd($user->id)}}
                         <div class="card" style="width: 20rem;">
                             <img class="card-img-top" src="{{$users->SocialAccount}}" alt="Card image cap">
                             <div class="card-block">
@@ -17,6 +17,7 @@
                             </div>
                         </div>
 
+                    @endforeach
 
                 </div>
             </div>
