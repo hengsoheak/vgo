@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
 
-                        {{dd($users->SocialAccount)}}
+                        {{dd($users->first()->SocialAccount->avatar)}}
                     
                         <div class="card" style="width: 20rem;">
                             <img class="card-img-top" src="{{$users->SocialAccount}}" alt="Card image cap">
