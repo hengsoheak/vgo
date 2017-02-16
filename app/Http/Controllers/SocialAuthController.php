@@ -33,8 +33,11 @@ class SocialAuthController extends Controller
                 $clientId = "102782740235682";
                 $clientSecret = "4ef4cebe7e4648aae71c624e7d45c481";
                 $redirectUrl = "http://camvgo.com/callback/facebook";
-                //$additionalProviderConfig = ['site' => 'meta.stackoverflow.com'];
-                $config = new \SocialiteProviders\Manager\Config($clientId, $clientSecret, $redirectUrl);//$additionalProviderConfig
+
+                $additionalProviderConfig = [
+                    'site' => 'meta.stackoverflow.com'
+                ];
+                $config = new \SocialiteProviders\Manager\Config($clientId, $clientSecret, $redirectUrl,$additionalProviderConfig);//$additionalProviderConfig
                 return Socialite::with('facebook')->setConfig($config)->redirect();
 
                 //return Socialite::driver('facebook')->redirect();
