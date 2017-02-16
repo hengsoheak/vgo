@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function SocialAccount () {
 
-        return $this->hasMany('App\Models\SocialModels\SocialAccount', 'user_id','id');
+        return $this->hasMany('App\Models\SocialModels\SocialAccount','user_id');
 
     }
 }

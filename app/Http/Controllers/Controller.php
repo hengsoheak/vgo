@@ -6,13 +6,24 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\User;
+use Auth;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    private $_data = [];
+    public function __construct()
+    {
+        //$this->middleware('auth');
+    }
+
+
     public function index(){
-        flash()->overlay('An account for that email already exists!', 'Error');
-        return view('FrontEnd.Home');
+
+        $this->_data['users']=  User::with('SocialAccount')->where('id',33)->first();
+
+        return view('FrontEnd.Home',$this->_data);
     }
 }

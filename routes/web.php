@@ -41,39 +41,19 @@ Route::get('callback/{twitter}', [
     'user'=>'SocialAuthController@callback'
 ])->where('twitter','[a-z]+');
 
-//flickr
+//linkedin
 
-Route::get('redirect/{flickr}', [
-        'as'=>'redirectFlickr',
+Route::get('redirect/{linkedin}', [
+        'as'=>'redirectLinkedin',
         'uses'=>'SocialAuthController@redirect'
     ]
-)->where('flickr','[a-z]+');
+)->where('linkedin','[a-z]+');
 
-Route::get('callback/{flickr}', [
-    'as'=>'callbackFlickr',
+
+Route::get('callback/{linkedin}', [
+    'as'=>'callbackLinkedin',
     'user'=>'SocialAuthController@callback'
-])->where('flickr','[a-z]+');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+])->where('linkedin','[a-z]+');
 
 
 

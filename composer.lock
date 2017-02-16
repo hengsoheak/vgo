@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d493880eb41356757c01d211387aa2f1",
-    "content-hash": "41b00c0f6fbd3274022bcf8084941178",
+    "hash": "a0db0571e957e0d0607f928618d9c67c",
+    "content-hash": "3fff126dfaa7657d5badb16d9656f35a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -452,16 +452,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.11",
+            "version": "v5.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9cee8db07cfac13a3a49d17388c9ced4c52e17ac"
+                "reference": "707f32d32dce58232f7a860e0a1d62caf6f9dbfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9cee8db07cfac13a3a49d17388c9ced4c52e17ac",
-                "reference": "9cee8db07cfac13a3a49d17388c9ced4c52e17ac",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/707f32d32dce58232f7a860e0a1d62caf6f9dbfc",
+                "reference": "707f32d32dce58232f7a860e0a1d62caf6f9dbfc",
                 "shasum": ""
             },
             "require": {
@@ -577,7 +577,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-02-10 19:40:54"
+            "time": "2017-02-15 14:31:32"
         },
         {
             "name": "laravel/socialite",
@@ -1364,43 +1364,6 @@
             "time": "2016-11-22 19:21:44"
         },
         {
-            "name": "socialiteproviders/flickr",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Flickr.git",
-                "reference": "20cca32ad7a52e1dfd5250648e410b210b6e995d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Flickr/zipball/20cca32ad7a52e1dfd5250648e410b210b6e995d",
-                "reference": "20cca32ad7a52e1dfd5250648e410b210b6e995d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0",
-                "socialiteproviders/manager": "~3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Flickr\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Flickr OAuth1 Provider for Laravel Socialite",
-            "time": "2017-01-25 09:48:29"
-        },
-        {
             "name": "socialiteproviders/google",
             "version": "v3.0.0",
             "source": {
@@ -1438,17 +1401,17 @@
             "time": "2017-01-25 09:48:29"
         },
         {
-            "name": "socialiteproviders/instagram",
+            "name": "socialiteproviders/linkedin",
             "version": "v3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/SocialiteProviders/Instagram.git",
-                "reference": "054dc7c8d2e4cf80e94321ee6fe316d0ef78a7f6"
+                "url": "https://github.com/SocialiteProviders/LinkedIn.git",
+                "reference": "d4f38e4c63e311af91f1428f6393c9ffd1c6fe01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Instagram/zipball/054dc7c8d2e4cf80e94321ee6fe316d0ef78a7f6",
-                "reference": "054dc7c8d2e4cf80e94321ee6fe316d0ef78a7f6",
+                "url": "https://api.github.com/repos/SocialiteProviders/LinkedIn/zipball/d4f38e4c63e311af91f1428f6393c9ffd1c6fe01",
+                "reference": "d4f38e4c63e311af91f1428f6393c9ffd1c6fe01",
                 "shasum": ""
             },
             "require": {
@@ -1458,7 +1421,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SocialiteProviders\\Instagram\\": ""
+                    "SocialiteProviders\\LinkedIn\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1471,7 +1434,7 @@
                     "email": "hello@brianfaust.de"
                 }
             ],
-            "description": "Instagram OAuth2 Provider for Laravel Socialite",
+            "description": "LinkedIn OAuth2 Provider for Laravel Socialite",
             "time": "2017-01-25 09:48:29"
         },
         {
@@ -1517,80 +1480,6 @@
             "time": "2017-02-07 07:26:42"
         },
         {
-            "name": "socialiteproviders/pinterest",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Pinterest.git",
-                "reference": "f5d394d0c5dc193b3331865c239b9beb0ff516df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Pinterest/zipball/f5d394d0c5dc193b3331865c239b9beb0ff516df",
-                "reference": "f5d394d0c5dc193b3331865c239b9beb0ff516df",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0",
-                "socialiteproviders/manager": "~3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Pinterest\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Tournaud",
-                    "email": "ollibrius@gmail.com"
-                }
-            ],
-            "description": "Pinterest OAuth2 Provider for Laravel Socialite",
-            "time": "2017-01-25 09:48:29"
-        },
-        {
-            "name": "socialiteproviders/tumblr",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Tumblr.git",
-                "reference": "c05757e9d3e3267031e15154610b4ad191919832"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Tumblr/zipball/c05757e9d3e3267031e15154610b4ad191919832",
-                "reference": "c05757e9d3e3267031e15154610b4ad191919832",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0",
-                "socialiteproviders/manager": "~3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Tumblr\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Tumblr OAuth1 Provider for Laravel Socialite",
-            "time": "2017-01-25 09:48:29"
-        },
-        {
             "name": "socialiteproviders/twitter",
             "version": "v3.0.0",
             "source": {
@@ -1625,43 +1514,6 @@
                 }
             ],
             "description": "Twitter OAuth1 Provider for Laravel Socialite",
-            "time": "2017-01-25 09:48:29"
-        },
-        {
-            "name": "socialiteproviders/vimeo",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Vimeo.git",
-                "reference": "02c30a5740a6c65f08561d00386105794f867c25"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Vimeo/zipball/02c30a5740a6c65f08561d00386105794f867c25",
-                "reference": "02c30a5740a6c65f08561d00386105794f867c25",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0",
-                "socialiteproviders/manager": "~3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Vimeo\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Vimeo OAuth2 Provider for Laravel Socialite",
             "time": "2017-01-25 09:48:29"
         },
         {

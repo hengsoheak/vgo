@@ -48,9 +48,10 @@ return [
         'client_secret' => '519akawAj4PZTWE4RfgOgiFY6z53pvqFVmpNddshypKwzJTO5T',
         'redirect' => 'http://camvgo.com/callback/twitter',
     ],
-    'flickr' => [
-        'client_id' => '7dd28fffc8dc72679008536f58e1c1a2',
-        'client_secret' => 'e47b563f6513bafa',
-        'redirect' => 'http://camvgo.com/callback/flickr',
+    'linkedin' => [
+        'client_id' => '81e08f89cqv33m',
+        'client_secret' => 'UHJzfdd8QVgMuZHO',
+        'redirect' => 'http://camvgo.com/callback/linkedin',
     ],
+
 ];
