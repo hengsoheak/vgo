@@ -168,7 +168,7 @@ class SocialAuthController extends Controller
         
 	    $socialAccount = new SocialAccount();
 
-        if(count($findExistingAcc) > 0 ) {
+        if(count($findExistingAcc) != 0 ){
 
             $socialAccount = SocialAccount::find($findExistingAcc->id);
 
