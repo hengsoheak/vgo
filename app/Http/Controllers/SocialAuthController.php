@@ -137,28 +137,51 @@ class SocialAuthController extends Controller
             $q->where('provider', $providerType);
         }])->where('email', $userProvider->email)->first();
 
-	dd(count($authUser->SocialAccount));
+        if (!empty($authUser) ) {
 
-        if (!empty($authUser)) {
+            if(count($authUser->SocialAccount) <= 1) {
+
+                $this->createSocislAccount($authUser, $userProvider, $providerType);
+
+            }
             return $authUser;
         }
-        //check if new we should register new user. we should let user register without password (email from social) and if they try to login with they password and email we will announce to them
-        //that your account was register without password so please file up your password
+
         $users = new user();
         $users->name = $userProvider->name;
         $users->email = $userProvider->email;
+
         if ($users->save()) {
-            $socialAccount = new SocialAccount();
-            $socialAccount->provider = $providerType;
-            $socialAccount->provider_user_id = $userProvider->id;
-            $socialAccount->user_id = $users->id;
-            $socialAccount->user_data = json_encode($userProvider->user);
-            $socialAccount->avatar = strtolower($userProvider->avatar);
-            $socialAccount->save();
+
+            $this->createSocislAccount($users=null, $userProvider=null, $providerType=null);
             DB::commit();
             return $users;
+
         }else {
             return ['result'=>true];
         }
     }
+
+    private function createSocislAccount ($users=null, $userProvider=null, $providerType=null){
+
+        $findExistingAcc = SocialAccount::where('user_id', $users->id)->first();
+        $socialAccount = new SocialAccount();
+        if(count($findExistingAcc) <=1 ) {
+
+            $socialAccount = SocialAccount::find($findExistingAcc->id);
+
+        }
+
+        $socialAccount->provider = $providerType;
+        $socialAccount->provider_user_id = $userProvider->id;
+        $socialAccount->user_id = $users->id;
+        $socialAccount->user_data = json_encode($userProvider->user);
+        $socialAccount->avatar = strtolower($userProvider->avatar);
+        if($socialAccount->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
