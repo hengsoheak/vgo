@@ -139,7 +139,7 @@ class SocialAuthController extends Controller
 
         if (!empty($authUser) ) {
 
-            if(count($authUser->SocialAccount) <= 1) {
+            if(count($authUser->SocialAccount) < 1) {
 
                 $this->createSocislAccount($authUser, $userProvider, $providerType);
 
@@ -153,7 +153,7 @@ class SocialAuthController extends Controller
 
         if ($users->save()) {
 
-            $this->createSocislAccount($users=null, $userProvider=null, $providerType=null);
+            $this->createSocislAccount($users, $userProvider, $providerType);
             DB::commit();
             return $users;
 
@@ -166,7 +166,7 @@ class SocialAuthController extends Controller
 
         $findExistingAcc = SocialAccount::where('user_id', $users->id)->first();
         $socialAccount = new SocialAccount();
-        if(count($findExistingAcc) <=1 ) {
+        if(count($findExistingAcc) < 1 ) {
 
             $socialAccount = SocialAccount::find($findExistingAcc->id);
 
