@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\SocialModels\SocialAccount;
@@ -16,6 +17,7 @@ class SocialAuthController extends Controller
     public function __construct()
     {
     }
+
     public function redirect($providerType)
     {
         switch ($providerType) {
@@ -35,7 +37,8 @@ class SocialAuthController extends Controller
                 break;
         }
     }
-    public function callback($providerType=[])
+
+    public function callback($providerType = [])
     {
         switch ($providerType) {
             case 'facebook':
@@ -53,15 +56,16 @@ class SocialAuthController extends Controller
                 break;
         }
 
-        $authUser = $this->_findOrCreateUser($providerUser,$providerType);
-        if(!$authUser){
+        $authUser = $this->_findOrCreateUser($providerUser, $providerType);
+        if (!$authUser) {
             flash()->overlay('An account for that email already exists!', 'Error');
             return redirect('/home');
         }
         Auth::login($authUser, true);
         return redirect('/home');
     }
-    private function _findOrCreateUser($userProvider,$providerType)
+
+    private function _findOrCreateUser($userProvider, $providerType)
     {
 //        User {#199 ▼
 //        +accessTokenResponseBody: array:4 [▼
@@ -133,13 +137,13 @@ class SocialAuthController extends Controller
         //2 check for provide company or provider name (facebook,twitter,google,...)
         //3 checking for if they file on email and password. system will input or update too.
 
-        $authUser = User::with(['SocialAccount'=>function($q)use ($providerType){
+        $authUser = User::with(['SocialAccount' => function ($q) use ($providerType) {
             $q->where('provider', $providerType);
         }])->where('email', $userProvider->email)->first();
 
-        if (!empty($authUser) ) {
+        if (!empty($authUser)) {
 
-            if(count($authUser->SocialAccount) == 0) {
+            if ((int)count($authUser->SocialAccount) == (int)0) {
 
                 $this->createSocislAccount($authUser, $userProvider, $providerType);
 
@@ -157,33 +161,30 @@ class SocialAuthController extends Controller
             DB::commit();
             return $users;
 
-        }else {
-            return ['result'=>true];
+        } else {
+            return ['result' => true];
         }
     }
 
-    private function createSocislAccount ($users=null, $userProvider=null, $providerType=null){
+    private function createSocislAccount($users , $userProvider, $providerType)
+    {
 
         $findExistingAcc = SocialAccount::where('user_id', $users->id)->first();
-        
-	    $socialAccount = new SocialAccount();
 
-        if(count($findExistingAcc) != 0 ){
+        $socialAccount = new SocialAccount();
 
-            $socialAccount = SocialAccount::find($findExistingAcc->id);
+        if ((int)count($findExistingAcc) > (int)0) {
+            dd($findExistingAcc->id);
+            $socialAccount = SocialAccount::where('id', $findExistingAcc->id)->first();
 
         }
+
         $socialAccount->provider = $providerType;
         $socialAccount->provider_user_id = $userProvider->id;
         $socialAccount->user_id = $users->id;
         $socialAccount->user_data = json_encode($userProvider->user);
         $socialAccount->avatar = strtolower($userProvider->avatar);
-
-        if($socialAccount->save()){
-            return true;
-        }else{
-            return false;
-        }
+        return $socialAccount->save();
     }
 
 }
