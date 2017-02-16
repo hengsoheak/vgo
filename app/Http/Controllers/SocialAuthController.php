@@ -139,7 +139,7 @@ class SocialAuthController extends Controller
 
         if (!empty($authUser) ) {
 
-            if(count($authUser->SocialAccount) > 0) {
+            if(count($authUser->SocialAccount) == 0) {
 
                 $this->createSocislAccount($authUser, $userProvider, $providerType);
 
@@ -178,6 +178,7 @@ class SocialAuthController extends Controller
         $socialAccount->user_id = $users->id;
         $socialAccount->user_data = json_encode($userProvider->user);
         $socialAccount->avatar = strtolower($userProvider->avatar);
+
         if($socialAccount->save()){
             return true;
         }else{
