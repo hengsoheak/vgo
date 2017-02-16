@@ -35,10 +35,10 @@ class SocialAuthController extends Controller
                 $redirectUrl = "http://camvgo.com/callback/facebook";
 
                 $additionalProviderConfig = [
-                    'site' => 'meta.stackoverflow.com'
+                    'site' => 'http://camvgo.com'
                 ];
                 $config = new \SocialiteProviders\Manager\Config($clientId, $clientSecret, $redirectUrl,$additionalProviderConfig);//$additionalProviderConfig
-                return Socialite::with('facebook')->setConfig($config)->redirect();
+                return Socialite::driver('facebook')->setConfig($config)->redirect();
 
                 //return Socialite::driver('facebook')->redirect();
                 break;
