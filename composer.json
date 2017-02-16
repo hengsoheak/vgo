@@ -11,13 +11,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "nesbot/carbon": "^1.22",
-        "socialiteproviders/flickr": "^3.0",
         "socialiteproviders/google": "^3.0",
-        "socialiteproviders/instagram": "^3.0",
-        "socialiteproviders/pinterest": "^3.0",
-        "socialiteproviders/tumblr": "^3.0",
         "socialiteproviders/twitter": "^3.0",
-        "socialiteproviders/vimeo": "^3.0",
         "twbs/bootstrap": "4.0.0-alpha.6"
     },
     "require-dev": {
