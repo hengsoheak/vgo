@@ -28,7 +28,11 @@ return [
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],
-
+    'facebook' => [
+        'client_id' => '102782740235682',
+        'client_secret' => '4ef4cebe7e4648aae71c624e7d45c481',
+        'redirect' => 'http://camvgo.com/callback/facebook',
+    ],
     'google' => [
         'client_id' => '90205237294-l8sko5f8nctokmldut73ipsrku3kns6e.apps.googleusercontent.com',
         'client_secret' => 'ay-DMR-rh3cWvvPl3lQDCMx5',
