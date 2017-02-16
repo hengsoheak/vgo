@@ -133,9 +133,11 @@ class SocialAuthController extends Controller
         //2 check for provide company or provider name (facebook,twitter,google,...)
         //3 checking for if they file on email and password. system will input or update too.
 
-        $authUser = User::with(['social'=>function($q)use ($providerType){
+        $authUser = User::with(['SocialAccount'=>function($q)use ($providerType){
             $q->where('provider', $providerType);
         }])->where('email', $userProvider->email)->first();
+
+	dd(count($authUser->SocialAccount));
 
         if (!empty($authUser)) {
             return $authUser;
