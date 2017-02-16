@@ -49,31 +49,11 @@ Route::get('redirect/{linkedin}', [
     ]
 )->where('linkedin','[a-z]+');
 
+
 Route::get('callback/{linkedin}', [
     'as'=>'callbackLinkedin',
     'user'=>'SocialAuthController@callback'
 ])->where('linkedin','[a-z]+');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

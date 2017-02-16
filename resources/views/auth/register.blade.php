@@ -92,6 +92,7 @@
                                             <span class="fa fa-linkedin"></span> linkedin
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
