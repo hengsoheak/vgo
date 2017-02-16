@@ -49,7 +49,7 @@ class SocialAuthController extends Controller
                 break;
             case 'linkedin':
                 $providerUser = Socialite::driver('linkedin')->user();//Socialite::driver('linkedin')->user();
-                dd($providerUser);
+
                 break;
         }
 
