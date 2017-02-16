@@ -47,7 +47,8 @@ class SocialAuthController extends Controller
                 $providerUser = Socialite::driver('twitter')->stateless()->user();
                 break;
             case 'linkedin':
-                $providerUser = Socialite::driver('linkedin')->stateless()->user();
+                $providerUser = Socialite::driver('linkedin')->stateless(false)->user();
+                dd($providerUser);
                 break;
 
         }
