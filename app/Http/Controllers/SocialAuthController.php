@@ -30,7 +30,8 @@ class SocialAuthController extends Controller
                 return Socialite::driver('twitter')->redirect();
                 break;
             case 'linkedin':
-                return Socialite::driver('linkedin')->redirect();
+                //return Socialite::driver('linkedin')->redirect();
+                return Socialite::with('linkedin')->redirect();
                 break;
         }
     }
@@ -47,10 +48,9 @@ class SocialAuthController extends Controller
                 $providerUser = Socialite::driver('twitter')->stateless()->user();
                 break;
             case 'linkedin':
-                $providerUser = Socialite::driver('linkedin')->stateless(false)->user();
+                $providerUser = Socialite::driver('linkedin')->user();//Socialite::driver('linkedin')->user();
                 dd($providerUser);
                 break;
-
         }
 
         $authUser = $this->_findOrCreateUser($providerUser,$providerType);

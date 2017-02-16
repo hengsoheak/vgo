@@ -67,24 +67,24 @@
                                         </button>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                        <a class="btn btn-block btn-social btn-facebook" href="{{route('redirectFacebook',['facebook'])}}">
+                                        <a class="btn btn-block btn-social btn-facebook" href="{{route('redirectFacebook', ['facebook'])}}">
                                             <i class="fa fa-facebook"></i>Facebook
                                         </a>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                        <a class="btn btn-block btn-social btn-twitter" href="{{route('redirectTwitter',['twitter'])}}">
+                                        <a class="btn btn-block btn-social btn-twitter" href="{{route('redirectTwitter', ['twitter'])}}">
                                             <span class="fa fa-twitter"></span>Twitter
                                         </a>
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                        <a class="btn btn-block btn-social btn-google" href="{{route('redirectGoogle',['google'])}}">
+                                        <a class="btn btn-block btn-social btn-google" href="{{route('redirectGoogle', ['google'])}}">
                                             <span class="fa fa-google"></span>Google
                                         </a>
                                     </div>
 
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                        <a class="btn btn-block btn-social btn-linkedin" href="{{route('redirectLinkedin',['linkedin'])}}">
-                                            <span class="fa fa-linkedin"></span> linkedin
+                                        <a class="btn btn-block btn-social btn-linkedin" href="{{route('redirectLinkedin', ['linkedin'])}}">
+                                            <span class="fa fa-linkedin"></span> Linkedin
                                         </a>
                                     </div>
 
