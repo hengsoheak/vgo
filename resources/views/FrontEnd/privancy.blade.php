@@ -6,25 +6,6 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
 
-                    @foreach($users as $user);
-                            {{dd($user->id)}}
-                        <div class="card" style="width: 20rem;">
-                            <img class="card-img-top" src="{{$users->SocialAccount}}" alt="Card image cap">
-                            <div class="card-block">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
-
 
 Privacy Policy
 
@@ -85,3 +66,10 @@ We will take reasonable measures to ensure that user data we collect, use, discl
 MODIFICATION OF PRIVACY POLICY
 
 We have the right to amend or modify this Privacy Policy from time to time and, in such case, we will make a public notice of it on this Privacy Policy page (or through individual notice such as e-mail) and obtain consent from the users if required by relevant laws. Your continued use of our website and content we provide after such notification indicates your continued agreement to the Privacy Policy as amended.
+
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
