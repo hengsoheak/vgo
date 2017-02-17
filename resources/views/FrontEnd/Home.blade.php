@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 	<div class="container">
         <div class="flex-row row">
 
