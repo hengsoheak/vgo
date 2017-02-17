@@ -5,6 +5,11 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
+Route::get('privancy', [
+        'as'=>'privancy',
+        'uses'=>'Controller@privancy'
+]);
+
 Route::get('redirect/{facebook}', [
     'as'=>'redirectFacebook',
     'uses'=>'SocialAuthController@redirect'

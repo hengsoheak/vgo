@@ -15,6 +15,7 @@
     <link href = "{{asset('bootstrap/css/bootstrap-social.css')}}" rel = "stylesheet">
     <link href = "{{asset('bootstrap/css/docs.css')}}" rel = "stylesheet">
     <link href = "{{asset('font-awesome-4.7.0/css/font-awesome.css')}}" rel = "stylesheet">
+    <link href = "{{asset('css/footer.css')}}" rel = "stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -45,7 +46,7 @@
 </head>
 <body>
 
-<div id = "app">
+<div id = "body">
     <div class = "well">
         <nav class = "navbar navbar-default navbar-fixed-top">
             <div class = "container-fluid">
@@ -100,18 +101,24 @@
     </div>
 
 
-    <div class="wrapper">
+    <div class="container-fluid">
         <div class="container">
-            <!--Begin COntent-->
+            <!--Begin Content-->
+
             @yield('content')<!--End Content-->
         </div>
     </div>
-
 </div>
+
+    @include('layouts.footer')
+
 
 <!-- Scripts -->
 <script src = "js/app.js"></script>
 <script src = "{{asset('bootstrap/js/bootstrap.js')}}"></script>
 <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.27/vue.js"></script>
+<script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.js"></script>
+<!-- or -->
+<script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 </body>
 </html>

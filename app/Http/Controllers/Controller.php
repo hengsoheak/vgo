@@ -26,4 +26,8 @@ class Controller extends BaseController
 
         return view('FrontEnd.Home',$this->_data);
     }
+    public function privancy(){
+
+        return view('FrontEnd.privancy', $this->_data);
+    }
 }
