@@ -57,6 +57,7 @@ class SocialAuthController extends Controller
                 break;
         }
 
+
         $authUser = $this->_findOrCreateUser($providerUser, $providerType);
         if (!$authUser) {
             flash()->overlay('An account for that email already exists!', 'Error');
@@ -106,7 +107,7 @@ class SocialAuthController extends Controller
         $socialAccount->provider_user_id = $userProvider->id;
         $socialAccount->user_id = $users->id;
         $socialAccount->user_data = json_encode($userProvider->user);
-        $socialAccount->avatar = strtolower($userProvider->avatar);
+        $socialAccount->avatar = $userProvider->avatar;
         return $socialAccount->save();
     }
 
