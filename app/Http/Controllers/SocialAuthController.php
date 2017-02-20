@@ -112,7 +112,7 @@ class SocialAuthController extends Controller
         $socialAccount->provider_user_id = $userProvider->id;
         $socialAccount->user_id = $users->id;
         $socialAccount->avatar = $userProvider->avatar;
-        $socialAccount->user_data = json_decode($userProvider->user);
+        $socialAccount->user_data = json_encode($userProvider->user);
         return $socialAccount->save();
     }
 
