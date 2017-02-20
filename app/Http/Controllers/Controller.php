@@ -22,6 +22,7 @@ class Controller extends BaseController
 
     public function index(){
 
+        dd(Auth::user());
         $this->_data['users'] =  User::with(['SocialAccount'])->where('id',33)->first();
 
         return view('FrontEnd.Home',$this->_data);
