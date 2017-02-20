@@ -6,7 +6,8 @@
  * Time: 12:16 AM
  */
 
-namespace app\Http\Controllers\Player;
+namespace app\Http\Controllers\Front\Player;
+
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
