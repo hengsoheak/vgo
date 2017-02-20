@@ -29,6 +29,6 @@ class PlayerController extends BaseController
         $img->insert(public_path('image/card/watermark.png'), 'top-left', 20, 290);
         $img->save(public_path('image/card/new/bar3.jpg'));
 
-        echo  '<html><img src="http://camvgo.dev/image/card/new/bar3.jpg"></html>';
+        echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
     }
 }
