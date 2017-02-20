@@ -23,8 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        flash()->overlay('An account for that email already exists!', 'Error');
         return view('home');
     }
 }

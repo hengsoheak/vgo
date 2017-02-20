@@ -7,6 +7,7 @@
 /.env
 Homestead.json
 Homestead.yaml
+*.env
 .env
 /*.env
 readme.md

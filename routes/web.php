@@ -62,7 +62,15 @@ Route::get('callback/{linkedin}', [
 
 
 
+Route::group(['prefix' => 'game'], function() {
 
+    Route::get('cards', [
+        'as' => 'cards',
+        'uses' => 'Front\Player\PlayerController@cards'
+    ]);
+
+
+});
 
 
 
