@@ -7,6 +7,7 @@
  */
 
 namespace app\Http\Controllers\Front\Player;
+use App\Models\SocialModels\SocialAccount;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -26,6 +27,8 @@ class PlayerController extends BaseController
 
         $img = Image::make(public_path('image/card/test.jpg'));
         //$img->resize(320, 240);
+        $social_user = SocialAccount::find(Auth::user()->id);
+        
         $img->insert(public_path('image/card/watermark.png'), 'top-left', 20, 290);
         $img->save(public_path('image/card/new/bar3.jpg'));
 
