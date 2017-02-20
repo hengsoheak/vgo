@@ -43,23 +43,26 @@ class SocialAuthController extends Controller
     {
         switch ($providerType) {
             case 'facebook':
+
                 $providerUser = Socialite::driver('facebook')->stateless()->user();
                 break;
             case 'google':
+
                 $providerUser = Socialite::driver('google')->stateless()->user();
                 break;
             case 'twitter':
+
                 $providerUser = Socialite::driver('twitter')->stateless()->user();
                 break;
             case 'linkedin':
-                $providerUser = Socialite::driver('linkedin')->user();//Socialite::driver('linkedin')->user();
 
+                $providerUser = Socialite::driver('linkedin')->user();//Socialite::driver('linkedin')->user();
                 break;
         }
 
         $authUser = $this->_findOrCreateUser($providerUser, $providerType);
         if (!$authUser) {
-            flash()->overlay('An account for that email already exists!', 'Error');
+
             return redirect('/home');
         }
         Auth::login($authUser, true);
@@ -69,7 +72,8 @@ class SocialAuthController extends Controller
     private function _findOrCreateUser($userProvider, $providerType)
     {
         DB::beginTransaction();
-        $users = User::with(['SocialAccount' => function ($q) use ($providerType) {
+
+        $users = User::with(['SocialAccount' => function($q)use($providerType) {
             $q->where('provider', $providerType);
         }])->where('email', $userProvider->email)->first();
 
@@ -85,7 +89,7 @@ class SocialAuthController extends Controller
 
         $users->name = $userProvider->name;
         $users->email = $userProvider->email;
-        if ($users->save()) {
+        if ($users->save()){
 
             $this->createSocislAccount($users, $userProvider, $providerType);
             DB::commit();
@@ -94,18 +98,19 @@ class SocialAuthController extends Controller
         return $users;
     }
 
-    private function createSocislAccount($users , $userProvider, $providerType)
+    private function createSocislAccount($users, $userProvider, $providerType)
     {
 
         $findExistingAcc = SocialAccount::where('user_id', $users->id)->first();
         $socialAccount = new SocialAccount();
         if ((int)count($findExistingAcc) > (int)0) {
+
             $socialAccount = SocialAccount::where('id', $findExistingAcc->id)->first();
         }
         $socialAccount->provider = $providerType;
         $socialAccount->provider_user_id = $userProvider->id;
         $socialAccount->user_id = $users->id;
-        $socialAccount->user_data = json_encode($userProvider->user);
+        $socialAccount->user_data = json_decode($userProvider->user);
         $socialAccount->avatar = strtolower($userProvider->avatar);
         return $socialAccount->save();
     }
