@@ -33,7 +33,6 @@ class PlayerController extends BaseController
 
             //public_path('image/card/watermark.png')
             //$img->fit(120, 90)->encode('png', 100);
-            $base64Image =base64_encode(file_get_contents($social_user->avatar));//base64_encode($social_user->avatar);
 
             $image = Image::make($social_user->avatar)->save(public_path('/user_face/'.$social_user->name.'.jpg'));
 
