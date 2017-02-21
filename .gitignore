@@ -11,3 +11,6 @@ Homestead.yaml
 .env
 /*.env
 readme.md
+*.jpg
+*.png
+*.gif
