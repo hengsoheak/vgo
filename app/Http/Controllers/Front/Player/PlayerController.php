@@ -32,8 +32,11 @@ class PlayerController extends BaseController
         if(count($social_user) > 0 ){
 
             //public_path('image/card/watermark.png')
-            $img->fit(120, 90)->encode('png', 100);
-            $img->insert($social_user->avatar, 'top-left', 20, 290);
+            //$img->fit(120, 90)->encode('png', 100);
+            $base64Image =base64_encode(file_get_contents($social_user->avatar));//base64_encode($social_user->avatar);
+
+
+            $img->insert($base64Image, 'top-left', 20, 290);
             $img->save(public_path('image/card/new/bar3.jpg'));
             echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
             return [true];
