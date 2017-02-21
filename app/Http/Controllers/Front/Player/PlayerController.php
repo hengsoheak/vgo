@@ -26,12 +26,6 @@ class PlayerController extends BaseController
     public function cards(Image $img) {
 
         $img = Image::make(public_path('image/card/test.jpg'));
-        //$img->resize(320, 240);
-
-
-            //public_path('image/card/watermark.png')
-            //$img->fit(120, 90)->encode('png', 100);
-//            dd($social_user->avatar);\
 
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
