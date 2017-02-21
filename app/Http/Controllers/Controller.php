@@ -24,7 +24,7 @@ class Controller extends BaseController
 
         $this->_data['users'] =  User::with(['SocialAccount'])->where('id', Auth::user()->id)->first();
 
-        return view('FrontEnd.Home',$this->_data);
+        return view('FrontEnd.Home', $this->_data);
     }
     public function privancy(){
 
