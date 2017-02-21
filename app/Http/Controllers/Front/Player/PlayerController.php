@@ -15,6 +15,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
+use Intervention\Image\Image;
+use Intervention\Image\Filters\FilterInterface;
 
 class PlayerController extends BaseController
 {
@@ -23,17 +25,21 @@ class PlayerController extends BaseController
 
     }
 
-    public function cards() {
+    public function cards(Image $img) {
 
         $img = Image::make(public_path('image/card/test.jpg'));
         //$img->resize(320, 240);
 
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
+        if(count($social_user) > 0 ){
 
-        //public_path('image/card/watermark.png')
-        $img->insert($social_user->avatar, 'top-left', 20, 290);
-        $img->save(public_path('image/card/new/bar3.jpg'));
-
-        echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
+            //public_path('image/card/watermark.png')
+            $img->fit(120, 90)->encode('png', 100);
+            $img->insert($social_user->avatar, 'top-left', 20, 290);
+            $img->save(public_path('image/card/new/bar3.jpg'));
+            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
+            return [true];
+        }
+        return [false];
     }
 }
