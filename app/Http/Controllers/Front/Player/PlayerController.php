@@ -32,14 +32,14 @@ class PlayerController extends BaseController
             //public_path('image/card/watermark.png')
             //$img->fit(120, 90)->encode('png', 100);
 
-		$image = Image::make('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Status_iucn_DD_icon.svg/2000px-Status_iucn_DD_icon.svg.png')->resize(100, 100)->save(public_path('image/userface/fuck.jpg'));
-
-		dd($image);
+            $image = Image::make('http://lh6.googleusercontent.com/-Gcp_Wjj7yA0/AAAAAAAAAAI/AAAAAAAAAB8/hl1xcz4FnEI/photo.jpg')->resize(100, 100)->save(public_path('image/userface/fuck.jpg'));
+        
             $img->insert($image, 'top-left', 20, 290);
             $img->save(public_path('image/card/new/bar3.jpg'));
-            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
-            return [true];
 
-        return [false];
+            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
+           //return [true];
+
+        //return [false];
     }
 }
