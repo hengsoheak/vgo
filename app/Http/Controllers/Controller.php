@@ -19,13 +19,11 @@ class Controller extends BaseController
         //$this->middleware('auth');
     }
 
-
     public function index(){
 
-        dd(Auth::user());
-        $this->_data['users'] =  User::with(['SocialAccount'])->where('id', Auth::user()->id)->first();
+        $social_user = SocialAccount::where(['id', Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
-        return view('FrontEnd.Home',$this->_data);
+        return view('FrontEnd.Home', $this->_data);
     }
     public function privancy() {
 

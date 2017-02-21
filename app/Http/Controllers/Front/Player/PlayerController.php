@@ -27,9 +27,11 @@ class PlayerController extends BaseController
 
         $img = Image::make(public_path('image/card/test.jpg'));
         //$img->resize(320, 240);
-        $social_user = SocialAccount::find(Auth::user()->id);
-        
-        $img->insert(public_path('image/card/watermark.png'), 'top-left', 20, 290);
+
+        $social_user = SocialAccount::where(['id', Auth::user()->id,'provider'=>Auth::user()->provider])->first();
+
+        //public_path('image/card/watermark.png')
+        $img->insert($social_user->avatar, 'top-left', 20, 290);
         $img->save(public_path('image/card/new/bar3.jpg'));
 
         echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
