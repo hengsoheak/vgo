@@ -33,11 +33,11 @@ class PlayerController extends BaseController
 
             //public_path('image/card/watermark.png')
             //$img->fit(120, 90)->encode('png', 100);
-	ini_set('allow_url_fopen',1);
             $base64Image =base64_encode(file_get_contents($social_user->avatar));//base64_encode($social_user->avatar);
 
+            $image = Image::make($social_user->avatar)->save(public_path('/user_face/'.$social_user->name.'.jpg'));
 
-            $img->insert($base64Image, 'top-left', 20, 290);
+            $img->insert($image, 'top-left', 20, 290);
             $img->save(public_path('image/card/new/bar3.jpg'));
             echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
             return [true];
