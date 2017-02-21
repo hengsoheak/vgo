@@ -23,7 +23,7 @@ class Controller extends BaseController
 
     public function index(){
 
-        $social_user = SocialAccount::where(['id', Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
+        $social_user = SocialAccount::where(['id'=>Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
         return view('FrontEnd.Home', $this->_data);
     }
