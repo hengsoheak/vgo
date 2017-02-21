@@ -16,7 +16,7 @@ class Controller extends BaseController
     private $_data = [];
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
 
@@ -26,7 +26,7 @@ class Controller extends BaseController
 
         return view('FrontEnd.Home', $this->_data);
     }
-    public function privancy(){
+    public function privancy() {
 
         return view('FrontEnd.privancy', $this->_data);
     }
