@@ -15,7 +15,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
-use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
 
 class PlayerController extends BaseController
