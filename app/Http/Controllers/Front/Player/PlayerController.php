@@ -31,16 +31,24 @@ class PlayerController extends FrontController
 
     public function cards() {
 
-        $img = Image::make(public_path('image/card/new/large.jpg'));
 
-        $img->mask(public_path('image/card/faces/1.png'), true);
+        //$img = Image::make(public_path('image/card/new/large.jpg'));
 
-        //$img->mask(public_path('image/card/faces/2.png'), true);
+        //$img->mask(public_path('image/card/faces/c.png'));
 
+        ///$img->mask(public_path('image/card/faces/masted.png'), true);
 
-        echo  '<html><img src="/image/card/new/large.jpg"></html>';
+//        $img = Image::make(public_path('image/card/test.jpg'));
+//        $url = 'https://graph.facebook.com/v2.8/1232156983565169/picture?width=150';
+//        $this->save_image($url, public_path('image/card/new/large.jpg'));
+//
+//        $img->insert(public_path('image/card/new/large.jpg'), 'top-left', 20, 290);
+//        $img->save(public_path('image/card/new/bar4.jpg'));
+//
+//        echo  '<html><img src="/image/card/new/bar4.jpg"></html>';
+//
+//        die();
 
-die();
         $img = Image::make(public_path('image/card/test.jpg'));
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
