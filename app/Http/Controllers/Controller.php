@@ -16,13 +16,12 @@ class Controller extends BaseController
     private $_data = [];
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
-
 
     public function index(){
 
-        $this->_data['users'] =  User::with(['SocialAccount'])->where('id', Auth::user()->id)->first();
+        $social_user = SocialAccount::where(['id', Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
         return view('FrontEnd.Home', $this->_data);
     }

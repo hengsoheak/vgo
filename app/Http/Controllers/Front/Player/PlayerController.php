@@ -27,8 +27,9 @@ class PlayerController extends BaseController
 
         $img = Image::make(public_path('image/card/test.jpg'));
         //$img->resize(320, 240);
-        $social_user = SocialAccount::find(Auth::user()->id);
-        
+
+        $social_user = SocialAccount::where(['id', Auth::user()->id,'provider'=>Auth::user()->provider])->first();
+
         $img->insert(public_path('image/card/watermark.png'), 'top-left', 20, 290);
         $img->save(public_path('image/card/new/bar3.jpg'));
 

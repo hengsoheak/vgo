@@ -88,8 +88,10 @@ class SocialAuthController extends Controller
             $users = new User();
         }
 
-        $users->name = $userProvider->name;
-        $users->email = $userProvider->email;
+        $users->name        = $userProvider->name;
+        $users->email       = $userProvider->email;
+        $users->provider    = $providerType;
+
         if ($users->save()){
 
             $this->createSocislAccount($users, $userProvider, $providerType);
