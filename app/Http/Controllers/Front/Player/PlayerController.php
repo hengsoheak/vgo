@@ -8,23 +8,39 @@
 
 namespace app\Http\Controllers\Front\Player;
 use App\Models\SocialModels\SocialAccount;
+use App\Http\Controllers\Front\FrontController;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
 
-class PlayerController extends BaseController
+
+
+class PlayerController extends FrontController
 {
+
+
+
     public function __construct()
     {
 
     }
 
-    public function cards(Image $img) {
 
+    public function cards() {
+
+        $img = Image::make(public_path('image/card/new/large.jpg'));
+
+        $img->mask(public_path('image/card/faces/1.png'), true);
+
+        //$img->mask(public_path('image/card/faces/2.png'), true);
+
+
+        echo  '<html><img src="/image/card/new/large.jpg"></html>';
+
+die();
         $img = Image::make(public_path('image/card/test.jpg'));
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
@@ -37,31 +53,5 @@ class PlayerController extends BaseController
         }
     }
 
-
-    function save_image($img,$fullpath){
-
-        $ch = curl_init($img);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
-        curl_setopt( $ch, CURLOPT_URL, $img );
-        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
-        curl_setopt( $ch, CURLOPT_ENCODING, "" );
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt( $ch, CURLOPT_AUTOREFERER, true );
-        curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );    # required for https urls
-        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 50 );
-        curl_setopt( $ch, CURLOPT_TIMEOUT, 20);
-        curl_setopt( $ch, CURLOPT_MAXREDIRS, 10 );
-        $rawdata=curl_exec($ch);
-        curl_close($ch);
-        if(file_exists($fullpath)){
-            unlink($fullpath);
-        }
-        $fp = fopen($fullpath, 'x');
-        fwrite($fp, $rawdata);
-        RETURN fclose($fp);
-
-    }
 
 }
