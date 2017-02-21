@@ -26,20 +26,26 @@ class PlayerController extends BaseController
     public function cards(Image $img) {
 
         $img = Image::make(public_path('image/card/test.jpg'));
+        //$img->resize(320, 240);
+
+
+            //public_path('image/card/watermark.png')
+            //$img->fit(120, 90)->encode('png', 100);
+//            dd($social_user->avatar);\
 
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
         if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'))){
 
             $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
+            $img->resize(320, 240);
             $img->save(public_path('image/card/new/bar3.jpg'));
             echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
 
         }
     }
 
-
-    function save_image($img,$fullpath){
+    private function save_image($img, $fullpath){
 
         $ch = curl_init($img);
         curl_setopt($ch, CURLOPT_HEADER, 0);
