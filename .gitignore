@@ -10,6 +10,7 @@ Homestead.yaml
 *.env
 .env
 /*.env
+public/image/card/*.jpg
 readme.md
 *.jpg
 *.png
