@@ -45,7 +45,7 @@ class PlayerController extends FrontController {
 
         $this->circle('rgba(100%,10%, 20%, 15)', 'rgba(100%, 10%, 0%, 1)', 'rgba(100%, 0%, 10%, .2)', 50, 50, 50, 70);
 
-        dir();
+        die();
 
         $img = new ImagesController();
         $img->create(800, 800, true);
@@ -82,8 +82,8 @@ class PlayerController extends FrontController {
         $base = new \Imagick(public_path('image/circle.jpg'));
         $mask = new \Imagick(public_path('image/mask.png'));
 
-        $base->compositeImage($mask, Imagick::COMPOSITE_COPYOPACITY, 0, 0);
-        $base->writeImage('result.png');
+        $base->compositeImage($mask, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+        $base->writeImage(public_path('image/result.png'));
 
         return;
 
