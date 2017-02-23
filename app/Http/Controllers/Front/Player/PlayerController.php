@@ -46,6 +46,7 @@ class PlayerController extends FrontController {
 //        die();
 
         $this->circle('rgba(100%,10%, 20%, 15)', 'rgba(100%, 10%, 0%, 1)', 'rgba(100%, 0%, 10%, .2)', 50, 50, 50, 70);
+
         dir();
 
         $img = new ImagesController();
@@ -81,24 +82,24 @@ class PlayerController extends FrontController {
     private function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY) {
 
         //Create a ImagickDraw object to draw into.
-        $draw = new \ImagickDraw();
+        $draw = new \ImagickDraw(public_path('image/card/new/18.jpg'));
 
-        $strokeColor = new \ImagickPixel($strokeColor);
-        $fillColor = new \ImagickPixel($fillColor);
+//        $strokeColor = new \ImagickPixel($strokeColor);
+  //      $fillColor = new \ImagickPixel($fillColor);
 
-        $draw->setStrokeOpacity(1);
-        $draw->setStrokeColor($strokeColor);
-        $draw->setFillColor($fillColor);
+    //    $draw->setStrokeOpacity(1);
+      //  $draw->setStrokeColor($strokeColor);
+       // $draw->setFillColor($fillColor);
 
-        $draw->setStrokeWidth(3);
-        $draw->setFontSize(18);
+  //      $draw->setStrokeWidth(3);
+//        $draw->setFontSize(18);
 
 //            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
 ///            $img->resize(320, 240);
 //            $img->save(public_path('image/card/new/bar3.jpg'));
 //            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
 
-        $draw->circle($originX, $originY, $endX, $endY);
+//        $draw->circle(100, 100, 50, 50);
         $imagick = new \Imagick();
         $imagick->newImage(400, 400, $backgroundColor);
         $imagick->setImageFormat("png");
