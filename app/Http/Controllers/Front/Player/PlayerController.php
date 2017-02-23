@@ -42,7 +42,7 @@ class PlayerController extends FrontController {
 //        echo  '<html><img src="/image/card/new/bar4.jpg"></html>';
 //
 //        die();
-        $img = Image::make(public_path('image/card/test.jpg'));
+        $img = Image::make(public_path('image/12.png'));
 //
 //
 //            //public_path('image/card/watermark.png')
@@ -51,9 +51,9 @@ class PlayerController extends FrontController {
 //
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
-        if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'))){
+        if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/'.$social_user->user_id.'.jpg'))){
 
-            $this->circle($social_user->avatar, public_path('image/'.$social_user->user_id.'.jpg'), $social_user->user_id);
+            $this->circle($social_user->user_id.'.jpg', $social_user->user_id);
 
             $img->insert(public_path('image/'.$social_user->user_id.'.png'), 'top-left', 20, 290);
 
