@@ -18,6 +18,7 @@ use Intervention\Image\Facades\Image;
 
 class PlayerController extends BaseController
 {
+
     public function __construct()
     {
 
@@ -25,24 +26,42 @@ class PlayerController extends BaseController
 
     public function cards(Image $img) {
 
-        $img = Image::make(public_path('image/card/test.jpg'));
-        //$img->resize(320, 240);
+
+        $img = new ImagesController();
+        $img->create(400, 400, true);
+
+// first image; crop and merge with base.
+        $img2 = new Img('./crop_1.png');
+        $img2->circleCrop();
+        $img->merge($img2, 50, 50);
+
+// second image; crop and merge with base.
+        $img3 = new Img('./crop_2.png');
+        $img3->circleCrop();
+        $img->merge($img3, 25, 200);
+
+        $img->render();
 
 
-            //public_path('image/card/watermark.png')
-            //$img->fit(120, 90)->encode('png', 100);
-//            dd($social_user->avatar);\
-
-        $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
-
-        if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'))){
-
-            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
-            $img->resize(320, 240);
-            $img->save(public_path('image/card/new/bar3.jpg'));
-            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
-
-        }
+//        $img = Image::make(public_path('image/card/test.jpg'));
+//        //$img->resize(320, 240);
+//
+//
+//            //public_path('image/card/watermark.png')
+//            //$img->fit(120, 90)->encode('png', 100);
+////            dd($social_user->avatar);\
+//
+//        $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
+//
+//        if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'))){
+//
+//            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
+//            //convert -size 200x200 xc:none -fill walter.jpg -draw "circle 100,100 100,1" circle_thumb.png
+//
+//            $img->save(public_path('image/card/new/bar3.jpg'));
+//            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
+//
+//        }
     }
 
     private function save_image($img, $fullpath){
