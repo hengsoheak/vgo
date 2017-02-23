@@ -22,9 +22,7 @@ class PlayerController extends FrontController {
 
     public function __construct()
     {
-
     }
-
 
     public function cards() {
 
@@ -80,6 +78,14 @@ class PlayerController extends FrontController {
     }
 
     private function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY) {
+
+        $base = new \Imagick(public_path('image/circle.jpg'));
+        $mask = new \Imagick(public_path('image/mask.png'));
+
+        $base->compositeImage($mask, Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+        $base->writeImage('result.png');
+
+        return;
 
         //Create a ImagickDraw object to draw into.
         $draw = new \ImagickDraw(public_path('image/card/new/18.jpg'));
