@@ -1,20 +1,18 @@
-<?php namespace app\Http\Controllers\Front\Trail\Images;
+<?php
+namespace App\Http\traits\Images;
 
 use Image;
 
-class ImagesController
-{
-    public $img;
+Class ImagesController {
 
-    public $transparent;
-
-    public $width;
-
-    public $height;
-
+    protected $img;
+    protected $transparent;
+    protected $width;
+    protected $height;
     public function __construct($img = null)
     {
         if (!empty($img)) {
+
             $this->img = imagecreatefrompng($img);
             $this->width = imagesx($this->img);
             $this->height = imagesy($this->img);
@@ -22,16 +20,18 @@ class ImagesController
         }
     }
 
-    public function create($width, $height, $transparent)
-    {
+    public function create($width, $height, $transparent) {
+
         $this->img = imagecreatetruecolor($width, $height);
         $this->width = $width;
-        $this->height =$height;
+        $this->height = $height;
 
         $this->setTransparentColour();
 
-        if (true === $transparent) {
-            imagefill($this->img, 0, 0, $this->transparent);
+        if($transparent == true) {
+
+            imagefill($this->img,10, 10, $this->transparent);
+
         }
     }
 
@@ -53,8 +53,8 @@ class ImagesController
             $mask,
             ($this->width / 2),
             ($this->height / 2),
-            $this->width,
-            $this->height,
+            $this->width/3,
+            $this->height/3,
             $black
         );
 
@@ -65,7 +65,7 @@ class ImagesController
         imagedestroy($mask);
     }
 
-    public function merge(Img $in, $dst_x = 0, $dst_y = 0)
+    public function merge(ImagesController $in, $dst_x = 0, $dst_y = 0)
     {
         imagecopymerge(
             $this->img,

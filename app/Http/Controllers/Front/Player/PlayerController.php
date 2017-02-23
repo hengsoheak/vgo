@@ -16,10 +16,9 @@ use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
 
+use App\Http\traits\Images\ImagesController;
 
-
-class PlayerController extends FrontController
-{
+class PlayerController extends FrontController {
 
     public function __construct()
     {
@@ -28,7 +27,6 @@ class PlayerController extends FrontController
 
 
     public function cards() {
-
 
         //$img = Image::make(public_path('image/card/new/large.jpg'));
 
@@ -47,21 +45,16 @@ class PlayerController extends FrontController
 //
 //        die();
 
+        $this->circle('45454545', '345345', 'red', 12, 133, 100, 100);
+        dir();
 
         $img = new ImagesController();
-        $img->create(400, 400, true);
+        $img->create(800, 800, true);
 
-// first image; crop and merge with base.
-        $img2 = new Img('./crop_1.png');
+        $img2 = new ImagesController(public_path('image/12.png'));
         $img2->circleCrop();
-        $img->merge($img2, 50, 50);
-
-// second image; crop and merge with base.
-        $img3 = new Img('./crop_2.png');
-        $img3->circleCrop();
-        $img->merge($img3, 25, 200);
-
-        $img->render();
+        $img->merge($img2, 10, 10);
+        dd($img2);
 
 
 //        $img = Image::make(public_path('image/card/test.jpg'));
@@ -85,4 +78,29 @@ class PlayerController extends FrontController
 //        }
     }
 
+    private function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY) {
+
+        //Create a ImagickDraw object to draw into.
+        $draw = new \ImagickDraw();
+
+        $strokeColor = new \ImagickPixel($strokeColor);
+        $fillColor = new \ImagickPixel($fillColor);
+
+        $draw->setStrokeOpacity(1);
+        $draw->setStrokeColor($strokeColor);
+        $draw->setFillColor($fillColor);
+
+        $draw->setStrokeWidth(2);
+        $draw->setFontSize(72);
+
+        $draw->circle($originX, $originY, $endX, $endY);
+
+        $imagick = new \Imagick();
+        $imagick->newImage(500, 500, $backgroundColor);
+        $imagick->setImageFormat("png");
+        $imagick->drawImage($draw);
+
+        header("Content-Type: image/png");
+        echo $imagick->getImageBlob();
+    }
 }
