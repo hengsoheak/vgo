@@ -8,15 +8,17 @@
 
 namespace app\Http\Controllers\Front\Player;
 use App\Models\SocialModels\SocialAccount;
+use App\Http\Controllers\Front\FrontController;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
 
-class PlayerController extends BaseController
+
+
+class PlayerController extends FrontController
 {
 
     public function __construct()
@@ -24,7 +26,26 @@ class PlayerController extends BaseController
 
     }
 
-    public function cards(Image $img) {
+
+    public function cards() {
+
+
+        //$img = Image::make(public_path('image/card/new/large.jpg'));
+
+        //$img->mask(public_path('image/card/faces/c.png'));
+
+        ///$img->mask(public_path('image/card/faces/masted.png'), true);
+
+//        $img = Image::make(public_path('image/card/test.jpg'));
+//        $url = 'https://graph.facebook.com/v2.8/1232156983565169/picture?width=150';
+//        $this->save_image($url, public_path('image/card/new/large.jpg'));
+//
+//        $img->insert(public_path('image/card/new/large.jpg'), 'top-left', 20, 290);
+//        $img->save(public_path('image/card/new/bar4.jpg'));
+//
+//        echo  '<html><img src="/image/card/new/bar4.jpg"></html>';
+//
+//        die();
 
 
         $img = new ImagesController();
@@ -62,32 +83,6 @@ class PlayerController extends BaseController
 //            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
 //
 //        }
-    }
-
-    private function save_image($img, $fullpath){
-
-        $ch = curl_init($img);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
-        curl_setopt( $ch, CURLOPT_URL, $img );
-        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
-        curl_setopt( $ch, CURLOPT_ENCODING, "" );
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt( $ch, CURLOPT_AUTOREFERER, true );
-        curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );    # required for https urls
-        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 50 );
-        curl_setopt( $ch, CURLOPT_TIMEOUT, 20);
-        curl_setopt( $ch, CURLOPT_MAXREDIRS, 10 );
-        $rawdata=curl_exec($ch);
-        curl_close($ch);
-        if(file_exists($fullpath)){
-            unlink($fullpath);
-        }
-        $fp = fopen($fullpath, 'x');
-        fwrite($fp, $rawdata);
-        RETURN fclose($fp);
-
     }
 
 }
