@@ -42,76 +42,61 @@ class PlayerController extends FrontController {
 //        echo  '<html><img src="/image/card/new/bar4.jpg"></html>';
 //
 //        die();
-
-        $this->circle('rgba(100%,10%, 20%, 15)', 'rgba(100%, 10%, 0%, 1)', 'rgba(100%, 0%, 10%, .2)', 50, 50, 50, 70);
-
-        die();
-
-        $img = new ImagesController();
-        $img->create(800, 800, true);
-
-        $img2 = new ImagesController(public_path('image/12.png'));
-        $img2->circleCrop();
-        $img->merge($img2, 10, 10);
-        dd($img2);
-
-
-//        $img = Image::make(public_path('image/card/test.jpg'));
-//        //$img->resize(320, 240);
+        $img = Image::make(public_path('image/card/test.jpg'));
 //
 //
 //            //public_path('image/card/watermark.png')
 //            //$img->fit(120, 90)->encode('png', 100);
 ////            dd($social_user->avatar);\
 //
-//        $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
-//
-//        if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'))){
-//
-//            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
-//            //convert -size 200x200 xc:none -fill walter.jpg -draw "circle 100,100 100,1" circle_thumb.png
-//
-//            $img->save(public_path('image/card/new/bar3.jpg'));
-//            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
-//
-//        }
+        $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
+
+        if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'))){
+
+            $this->circle($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'), $social_user->user_id);
+
+            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.png'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
+
+            $img->save(public_path('image/card/new/bar3.jpg'));
+            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
+        }
     }
 
-    private function circle($strokeColor, $fillColor, $backgroundColor, $originX, $originY, $endX, $endY) {
+    private function circle($img,$id) {
 
-        $base = new \Imagick(public_path('image/circle.jpg'));
+        $base = new \Imagick(public_path($img));
         $mask = new \Imagick(public_path('image/mask.png'));
 
         $base->compositeImage($mask, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
-        $base->writeImage(public_path('image/result.png'));
-
-        return;
-
-        //Create a ImagickDraw object to draw into.
-        $draw = new \ImagickDraw(public_path('image/card/new/18.jpg'));
-
-//        $strokeColor = new \ImagickPixel($strokeColor);
-  //      $fillColor = new \ImagickPixel($fillColor);
-
-    //    $draw->setStrokeOpacity(1);
-      //  $draw->setStrokeColor($strokeColor);
-       // $draw->setFillColor($fillColor);
-
-  //      $draw->setStrokeWidth(3);
-//        $draw->setFontSize(18);
-
-//            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
-///            $img->resize(320, 240);
-//            $img->save(public_path('image/card/new/bar3.jpg'));
-//            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
-
-//        $draw->circle(100, 100, 50, 50);
-        $imagick = new \Imagick();
-        $imagick->newImage(400, 400, $backgroundColor);
-        $imagick->setImageFormat("png");
-        $imagick->drawImage($draw);
-
-        header("Content-Type: image/png");
-        echo $imagick->getImageBlob();
+        $base->writeImage(public_path('image/'.$id.'.png'));
+//
+//        return;
+//
+//        //Create a ImagickDraw object to draw into.
+//        $draw = new \ImagickDraw(public_path('image/card/new/18.jpg'));
+//
+////        $strokeColor = new \ImagickPixel($strokeColor);
+//  //      $fillColor = new \ImagickPixel($fillColor);
+//
+//    //    $draw->setStrokeOpacity(1);
+//      //  $draw->setStrokeColor($strokeColor);
+//       // $draw->setFillColor($fillColor);
+//
+//  //      $draw->setStrokeWidth(3);
+////        $draw->setFontSize(18);
+//
+////            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
+/////            $img->resize(320, 240);
+////            $img->save(public_path('image/card/new/bar3.jpg'));
+////            echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
+//
+////        $draw->circle(100, 100, 50, 50);
+//        $imagick = new \Imagick();
+//        $imagick->newImage(400, 400, $backgroundColor);
+//        $imagick->setImageFormat("png");
+//        $imagick->drawImage($draw);
+//
+//        header("Content-Type: image/png");
+//        echo $imagick->getImageBlob();
     }
 }
