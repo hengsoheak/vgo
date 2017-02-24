@@ -1,7 +1,7 @@
 require('./bootstrap');
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('Alert', require('./components/Alert.vue'));
 
 const app = new Vue({
-    el: 'body'
+    el: 'app'
 });
 
