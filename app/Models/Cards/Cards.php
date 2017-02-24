@@ -9,6 +9,6 @@ class Cards extends MyModels
 
     public function card_description()
     {
-        return $this->hasMany('App\Models\Cards\Card_Description','card_ids','id');
+        return $this->hasMany('App\Models\Cards\Card_Description', 'card_ids', 'id');
     }
 }
