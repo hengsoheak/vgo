@@ -1,9 +1,10 @@
 <?php
 
 Route::get('/', function () {
-
-    return view('layouts.app');
+    return view('FrontEnd.Home');
 });
+
+Auth::routes();
 
 Route::get('privancy', [
         'as'=>'privancy',
@@ -69,18 +70,12 @@ Route::group(['prefix' => 'game'], function() {
         'uses' => 'Front\Player\PlayerController@cards'
     ]);
 
+    Route::get('get_cards', [
+        'as'=>'get_cards',
+        'uses'=>'Front\HomeController@get_cards'
+    ]);
 
 });
 
 
 
-
-
-
-
-
-
-
-Auth::routes();
-
-Route::get('/home', 'Controller@index');

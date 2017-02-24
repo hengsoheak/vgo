@@ -18,6 +18,7 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+require('vue-resource');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -39,7 +40,7 @@ window.axios.defaults.headers.common = {
  */
 
 // import Echo from "laravel-echo"
-
+//
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'

@@ -1,31 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class = "row">
+        <div class = "panel panel-default">
+            <div class = "panel-body">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
 
-	<div class="container">
-        <div class="flex-row row">
+                    <div id="exTab2" class="container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a  href="#1" data-toggle="tab"> Overview </a></li>
+                        </ul>
 
-            <a href="{{route('cards')}}">
-               <div class="col-xs-6 col-sm-4 col-lg-3">
-               <div class="thumbnail">
-                  <img src="{{asset('image/card/thumbnail.png')}}">
-                  <div class="caption">
-                     <h5>Title</h5>
-                        <p class="flex-text text-muted">
-                            Lorem ipsum dolor sit amet, consectetur
-                        </p>
-                      <a class="btn btn-primary btn-xs" href="#">Link</a>
-                      <a class="btn btn-primary btn-xs" href="#">Link</a>
-                      <a class="btn btn-primary btn-xs" href="#">Link</a>
-                      <a class="btn btn-primary btn-xs" href="#">Link</a>
-                  </div>
-               </div>
+                        <div class="tab-content ">
+
+                            <div class="tab-pane active" id="1">
+                                <h3>Comming soon</h3>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <hr/>
+                <div class="load-more-block"></div>
             </div>
-            </a>
-
         </div>
-   </div>
-
+    </div>
 
 @endsection
 

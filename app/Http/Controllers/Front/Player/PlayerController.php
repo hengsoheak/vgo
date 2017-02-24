@@ -46,4 +46,5 @@ class PlayerController extends FrontController {
             echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
         }
     }
+    
 }

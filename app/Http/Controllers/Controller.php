@@ -21,12 +21,6 @@ class Controller extends BaseController
         //$this->middleware('auth');
     }
 
-    public function index(){
-
-        //$social_user = SocialAccount::where(['user_id'=>Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
-
-        return view('FrontEnd.Home', $this->_data);
-    }
     public function privancy() {
 
         return view('FrontEnd.privancy', $this->_data);
