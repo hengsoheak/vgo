@@ -43,7 +43,7 @@ class PlayerController extends FrontController {
     private function circle($img, $id) {
 
         $base = new \Imagick(public_path('image/'.$img));
-        $mask = new \Imagick(public_path('image/mask.png'));
+        $mask = new \Imagick(public_path('image/mask2.png'));
 
         $base->compositeImage($mask, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
         $base->writeImage(public_path('image/'.$id.'.png'));

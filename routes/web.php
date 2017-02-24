@@ -2,7 +2,8 @@
 
 Route::get('/', function () {
 
-    return view('layouts.app');
+//    return view('layouts.app');
+return view('FrontEnd.Home');
 });
 
 Route::get('privancy', [
