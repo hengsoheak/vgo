@@ -15,58 +15,35 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
+use App\Http\traits\Images\ImagesController;
+//use App\Http\traits\Images\ImagesController;
 
+class PlayerController extends FrontController {
 
-
-class PlayerController extends FrontController
-{
-
-
+    protected $images;
 
     public function __construct()
     {
 
     }
 
-
     public function cards() {
 
 
-        //$img = Image::make(public_path('image/card/new/large.jpg'));
-
-        //$img->mask(public_path('image/card/faces/c.png'));
-
-        ///$img->mask(public_path('image/card/faces/masted.png'), true);
-
-        $img = Image::make(public_path('image/card/test.jpg'));
-        $url = 'https://graph.facebook.com/v2.8/1232156983565169/picture?width=150';
-        $this->save_image($url, public_path('image/card/new/large.jpg'));
-
-        $img->insert(public_path('image/card/new/large.jpg'), 'top-left', 20, 290);
-        $img->save(public_path('image/card/new/bar4.jpg'));
-
-        echo  '<html><img src="/image/card/new/bar4.jpg"></html>';
-
-        die();
-
-        $img = Image::make(public_path('image/card/test.jpg'));
-        //$img->resize(320, 240);
-
-
-            //public_path('image/card/watermark.png')
-            //$img->fit(120, 90)->encode('png', 100);
-//            dd($social_user->avatar);\
+        $this->images = new ImagesController();
 
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
-        if(count($social_user) > 0 && $this->save_image($social_user->avatar, public_path('image/card/new/'.$social_user->user_id.'.jpg'))){
+        $img = Image::make(public_path('image/card/test.jpg'));
 
-            $img->insert(public_path('image/card/new/'.$social_user->user_id.'.jpg'), 'top-left', 20, 290);//public_path('image/card/watermark.png')
-            $img->resize(320, 240);
+        if(count($social_user) > 0 && $this->images->save_image($social_user->avatar, 'image/'.$social_user->user_id.'.jpg')){
+
+            $this->images->circle($social_user->user_id.'.jpg', $social_user->user_id);
+
+            $img->insert(public_path('image/'.$social_user->user_id.'.png'), 'top-left', 20, 290);
+
             $img->save(public_path('image/card/new/bar3.jpg'));
             echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
-
         }
     }
-
 }
