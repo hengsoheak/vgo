@@ -16,7 +16,8 @@ use App\User;
 use Auth;
 use Intervention\Image\Facades\Image;
 use App\Http\traits\Images\ImagesController;
-//use App\Http\traits\Images\ImagesController;
+
+
 
 class PlayerController extends FrontController {
 
@@ -46,5 +47,5 @@ class PlayerController extends FrontController {
             echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
         }
     }
-    
+
 }
