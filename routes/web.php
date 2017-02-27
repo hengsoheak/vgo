@@ -65,10 +65,10 @@ Route::get('callback/{linkedin}', [
 
 Route::group(['prefix' => 'game'], function() {
 
-    Route::get('cards', [
+    Route::get('cards/{id}', [
         'as' => 'cards',
         'uses' => 'Front\Player\PlayerController@cards'
-    ]);
+    ])->where('id','[0-9]+');
 
     Route::get('get_cards', [
         'as'=>'get_cards',
