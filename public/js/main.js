@@ -12,12 +12,10 @@ $(document).ready(function () {
             if (tst > dd) {
 
                 return ajaxs({url:'game/get_cards', method:'get', types:'json', data:{}},function(data, status) {
-
+                        "use strict";
                     var htmls = '';
                     $.each(data.cards, function(inx, vals){
                         "use strict";
-
-                        console.log(vals);
 
                         htmls += '<a href = "game/cards/'+vals.cards.id+'">';
                         htmls += '<div class = "col-xs-6 col-sm-4 col-lg-3">';
@@ -36,10 +34,10 @@ $(document).ready(function () {
                         htmls += '</div>';
                         htmls += '</a>';
 
-
                     });
 
                     $('<div class="row">'+htmls+'</div>').appendTo('.load-more-block');
+
                 })
             }
         }
