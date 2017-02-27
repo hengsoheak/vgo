@@ -30,8 +30,11 @@ class HomeController extends FrontController
 
     public function get_cards() {
 
-        $cards = CardType::with(['CardTypeDescription'])->with(['cards', 'cards.cardDescr'])->get();
-        
+        $cards = CardType::with(['CardTypeDescription'])
+            ->with(['cards', 'cards.cardDescr'])->get();
+
+//	dd($cards);
+
         if(count($cards) > 0) {
             return ['cards'=>$cards];
         }
