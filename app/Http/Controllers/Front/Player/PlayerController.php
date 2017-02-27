@@ -43,7 +43,9 @@ class PlayerController extends FrontController {
 
         if(count($images) > 0 ){
 
+		$fbpro =  parse_url("https://graph.facebook.com/v2.8/585722174951882/picture?width=200");
             $img = Image::make(public_path('image/'.$images->cardDescr->first()->img));///Create user images
+
         }
 
         if(count($social_user) > 0 && $this->images->save_image($social_user->avatar, 'image/'.$social_user->user_id.'.jpg')){ ///create user images from fcebook and ...
@@ -54,15 +56,15 @@ class PlayerController extends FrontController {
             $img->insert(public_path('image/'.$social_user->user_id.'.png'), 'top-left', 490, 390);//20 the margin-left and 290 is the margin from top  top-left mean that we will insert image to left
 
 
-	        $img->text('foo', 0, 0, function($font) {
+	        $img->text(Auth::user()->name, 160, 60, function($font) {
 
                 $font->file(public_path('image/fonts/test.ttf'));
-                $font->size(24);
-                $font->color('#fdf6e3');
+                $font->size(40);
+                $font->color('#ec2127');
                 $font->align('center');
-                $font->valign('top');
-                $font->angle(45);
-                $font->color(array(255, 255, 255, 0.5));
+                $font->valign('middle');
+                $font->angle(0);
+                //$font->color(array(255, 255, 255, 0.5));
 
 	    });
 
