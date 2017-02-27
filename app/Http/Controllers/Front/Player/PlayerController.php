@@ -54,7 +54,7 @@ class PlayerController extends FrontController {
             $img->insert(public_path('image/'.$social_user->user_id.'.png'), 'top-left', 490, 390);//20 the margin-left and 290 is the margin from top  top-left mean that we will insert image to left
 
 
-	        $img->text('foo', 0, 0, function($font) {
+	        $img->text(Auth::user()->name, 100, 100, function($font) {
 
                 $font->file(public_path('image/fonts/test.ttf'));
                 $font->size(24);

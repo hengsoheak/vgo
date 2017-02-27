@@ -14,13 +14,15 @@ $(document).ready(function () {
                 return ajaxs({url:'game/get_cards', method:'get', types:'json', data:{}},function(data, status) {
 
                     var htmls = '';
-                    for(var key in data){
+                    $.each(data.cards, function(inx, vals){
+                        "use strict";
 
-                        var val = data[key];
-                        htmls += '<a href = "/cards">';
+                        console.log(vals);
+
+                        htmls += '<a href = "game/cards/'+vals.cards.id+'">';
                         htmls += '<div class = "col-xs-6 col-sm-4 col-lg-3">';
                         htmls += '<div class = "thumbnail">';
-                        htmls += '<img src = "/image/card/certivicate2.jpg">';
+                        htmls += '<img src = "/image/'+vals.cards[0].card_descr.img+'">';
                         htmls += '<div class = "caption">';
                         htmls += '<h5>Title</h5>';
                         htmls += '<p class = "flex-text text-muted">';
@@ -33,7 +35,9 @@ $(document).ready(function () {
                         htmls += '</div>';
                         htmls += '</div>';
                         htmls += '</a>';
-                    }
+
+
+                    });
 
                     $('<div class="row">'+htmls+'</div>').appendTo('.load-more-block');
                 })
