@@ -87,13 +87,16 @@ Class ImagesController  extends FrontController{
         imagepng($this->img);
     }
 
-    protected function circle($img, $id) {
+    public function circle($img, $id) {
 
         $base = new \Imagick(public_path('image/'.$img));
         $mask = new \Imagick(public_path('image/mask.png'));
 
         $base->compositeImage($mask, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
         $base->writeImage(public_path('image/'.$id.'.png'));
+	//$img->resize(300,300);
+//	$base->resizeImage(400,400, \Imagick::FILTER_LANCZOS,0);
+
     }
 
     public function save_image($img, $fullpath){

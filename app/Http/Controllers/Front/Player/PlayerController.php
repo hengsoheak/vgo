@@ -36,19 +36,27 @@ class PlayerController extends FrontController {
 
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
-        $images = Cards::with(['cardDescr'])->first();
+        $images = Cards::with(['cardDescr'])->where('id',$id)->first();
+
         $img = Image::make(public_path('image/12.png'));
 
-        if(count($images) == 0 ){
+//	dd($images->cardDescr->first()->id);
 
-            $img = Image::make(public_path('image/'.$images->cardDescr->img));
+        if(count($images) > 0 ){
+
+            $img = Image::make(public_path('image/'.$images->cardDescr->first()->img));///Create user images
         }
 
-        if(count($social_user) > 0 && $this->images->save_image($social_user->avatar, 'image/'.$social_user->user_id.'.jpg')){
+        if(count($social_user) > 0 && $this->images->save_image($social_user->avatar, 'image/'.$social_user->user_id.'.jpg')){ ///create user images from fcebook and ...
 
             $this->images->circle($social_user->user_id.'.jpg', $social_user->user_id);
+            $img->insert(public_path('image/'.$social_user->user_id.'.png'), 'top-left', 490, 390);//20 the margin-left and 290 is the margin from top  top-left mean that we will insert image to left	
+	    
+          	$font = public_path('image/fonts/test.ttf');
 
-            $img->insert(public_path('image/'.$social_user->user_id.'.png'), 'top-left', 20, 290);
+	    $img->text('foo', 0, 0, function($font) {
+	    	$font->color(array(255, 255, 255, 0.5));
+	    });
 
             $img->save(public_path('image/card/new/bar3.jpg'));
             echo  '<html><img src="http://camvgo.com/image/card/new/bar3.jpg"></html>';
