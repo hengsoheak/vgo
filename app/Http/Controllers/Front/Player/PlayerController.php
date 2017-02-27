@@ -7,6 +7,7 @@
  */
 
 namespace app\Http\Controllers\Front\Player;
+use App\Models\Cards\Cards;
 use App\Models\SocialModels\SocialAccount;
 use App\Http\Controllers\Front\FrontController;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -28,14 +29,20 @@ class PlayerController extends FrontController {
 
     }
 
-    public function cards() {
+    public function cards($id) {
 
 
         $this->images = new ImagesController();
 
         $social_user = SocialAccount::where(['user_id'=> Auth::user()->id, 'provider'=>Auth::user()->provider])->first();
 
-        $img = Image::make(public_path('image/card/test.jpg'));
+        $images = Cards::with(['cardDescr'])->first();
+        $img = Image::make(public_path('image/12.png'));
+
+        if(count($images) == 0 ){
+
+            $img = Image::make(public_path('image/'.$images->cardDescr->img));
+        }
 
         if(count($social_user) > 0 && $this->images->save_image($social_user->avatar, 'image/'.$social_user->user_id.'.jpg')){
 
