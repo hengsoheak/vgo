@@ -13,7 +13,7 @@ class CardType extends MyModels
 
     }
 
-    public function Card_Type_Description() {
+    public function CardTypeDescription() {
 
         return $this->hasMany(Card_Type_Description::class);
 

@@ -15,3 +15,5 @@ readme.md
 *.jpg
 *.png
 *.gif
+/vgo.com-access_log
+/vgo-error_log

@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\traits\Images;
 
+use app\Http\Controllers\Front\FrontController;
 use Image;
 
-Class ImagesController {
+Class ImagesController  extends FrontController{
 
     protected $img;
     protected $transparent;
@@ -84,6 +85,49 @@ Class ImagesController {
     {
         header('Content-type: image/png');
         imagepng($this->img);
+    }
+
+    public function circle($img, $id) {
+
+        $base = new \Imagick(public_path('image/'.$img));
+        $mask = new \Imagick(public_path('image/mask.png'));
+
+        $base->compositeImage($mask, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+        $base->writeImage(public_path('image/'.$id.'.png'));
+
+    }
+
+    public function save_image($img, $fullpath){
+
+        $ch = curl_init($img);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+        curl_setopt( $ch, CURLOPT_URL, $img );
+        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+        curl_setopt( $ch, CURLOPT_ENCODING, "" );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch, CURLOPT_AUTOREFERER, true );
+        curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );    # required for https urls
+        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 50 );
+        curl_setopt( $ch, CURLOPT_TIMEOUT, 20);
+        curl_setopt( $ch, CURLOPT_MAXREDIRS, 10 );
+        $rawdata = curl_exec($ch);
+
+        if(curl_error($ch)) {
+
+            return curl_error($ch);
+        }
+        curl_close($ch);
+
+        if(file_exists(public_path($fullpath))){
+            unlink(public_path($fullpath));
+        }
+
+        $fp = fopen(public_path($fullpath), 'x');
+        fwrite($fp, $rawdata);
+        RETURN fclose($fp);
+
     }
 }
 
