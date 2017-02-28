@@ -16,7 +16,7 @@
     <link href = "{{asset('bootstrap/css/docs.css')}}" rel = "stylesheet">
     <link href = "{{asset('font-awesome-4.7.0/css/font-awesome.css')}}" rel = "stylesheet">
     <link href = "{{asset('css/footer.css')}}" rel = "stylesheet">
-
+    @yield('css')
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([

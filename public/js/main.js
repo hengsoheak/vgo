@@ -14,25 +14,10 @@ $(document).ready(function () {
                 return ajaxs({url:'game/get_cards', method:'get', types:'json', data:{}},function(data, status) {
                         "use strict";
                     var htmls = '';
-                    $.each(data.cards, function(inx, vals){
+                    $.each(data.cards_type, function(inx, vals) {
                         "use strict";
 
-                        htmls += '<a href = "game/cards/'+vals.cards[0].id+'">';
-                        htmls += '<div class = "col-xs-6 col-sm-4 col-lg-3">';
-                        htmls += '<div class = "thumbnail">';
-                        htmls += '<img src = "/image/'+vals.cards[0].card_descr.img+'">';
-                        htmls += '<div class = "caption">';
-                        htmls += '<h5>Title</h5>';
-                        htmls += '<p class = "flex-text text-muted">';
-                        htmls += 'Lorem ipsum dolor sit amet, consectetur </p>';
-                        htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
-                        htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
-                        htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
-                        htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
-                        htmls += '</div>';
-                        htmls += '</div>';
-                        htmls += '</div>';
-                        htmls += '</a>';
+                        console.log(vals.cards[0].card_descr[0].img);
 
                     });
 
@@ -44,7 +29,24 @@ $(document).ready(function () {
         lastScrollTop = st;
     }, false);
 });
-
+function htmls (){
+    htmls += '<a href = "game/cards/'+vals.cards[0].id+'">';
+    htmls += '<div class = "col-xs-6 col-sm-4 col-lg-3">';
+    htmls += '<div class = "thumbnail">';
+    htmls += '<img src = "/image/'+vals.cards[0].card_descr.img+'">';
+    htmls += '<div class = "caption">';
+    htmls += '<h5>Title</h5>';
+    htmls += '<p class = "flex-text text-muted">';
+    htmls += 'Lorem ipsum dolor sit amet, consectetur </p>';
+    htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
+    htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
+    htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
+    htmls += '<a class = "btn btn-primary btn-xs" href = "#">Link</a>';
+    htmls += '</div>';
+    htmls += '</div>';
+    htmls += '</div>';
+    htmls += '</a>';
+}
 function ajaxs(objs, callback) {
     "use strict";
     $.ajax({
