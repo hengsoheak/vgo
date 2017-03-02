@@ -15,7 +15,9 @@ class HomeController extends FrontController
      */
     public function __construct()
     {
+        parent::__construct();
         //$this->middleware('auth');
+
     }
 
     /**
@@ -30,7 +32,11 @@ class HomeController extends FrontController
 
     public function get_cards() {
 
-        $cards = CardType::with(['CardTypeDescription'])->with(['cards', 'cards.cardDescr'])->get();
+        $cards = CardType::with(['CardTypeDescription'=>function($q) {
+            $q->where('lang_id', $this->lang_id);
+        }])->with(['cards', 'cards.cardDescr'=>function($q) {
+            $q->where('lang_id', $this->lang_id);
+        }])->get();
 
         if(count($cards) > 0) {
             return ['cards_type'=>$cards];

@@ -11,11 +11,17 @@ use App\Http\Controllers\Controller;
 
 class FrontController extends Controller {
 
+    public $lang_id;
+
     public function __construct()
     {
         parent::__construct();
 
+        $this->lang_id = $this->lang();
     }
 
+    protected function lang() {
+        return 1;
+    }
 
 }

@@ -29,7 +29,7 @@
 .breadcrumb li a {
     color: white;
     text-decoration: none;
-    padding: 10px 0 10px 35px;
+    padding: 6px 0 6px 41px;
     position: relative;
     display: block;
     float: left;
@@ -68,3 +68,14 @@
 }
 .breadcrumb li a:hover { background: #ffc107  ; }
 .breadcrumb li a:hover:after { border-left-color: #ffc107   !important; }
+
+.thumbnail {
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(111, 111, 111, 0.19) !important;
+    -moz-box-shadow: 3px 3px 5px 0px rgba(111, 111, 111, 0.19)!important;;
+    box-shadow: 3px 3px 5px 0px rgba(111, 111, 111, 0.19)!important;;
+}
+.thumbnail:hover{
+    -webkit-box-shadow: 0.5px 0.5px 0.5px 0px rgba(111, 111, 111, 0.19) !important;
+    -moz-box-shadow: 0.5px 0.5px 0.5px 0px rgba(111, 111, 111, 0.19)!important;
+    box-shadow: 0.5px 0.5px 0px 0.5px rgba(111, 111, 111, 0.19)!important;
+}
