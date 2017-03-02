@@ -24,7 +24,11 @@ return [
             'provider' => 'users',
         ],
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'web',
+            'provider' => 'users',
+        ],
+        'Admin' => [
+            'driver' => 'session',
             'provider' => 'users',
         ],
     ],

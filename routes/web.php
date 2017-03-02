@@ -1,6 +1,7 @@
 <?php
 
-Route::get('/', function () {
+Route::get('/', function (\Symfony\Component\HttpFoundation\Request $request) {
+
     return view('FrontEnd.Home');
 });
 
