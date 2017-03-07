@@ -6,10 +6,10 @@
  * Time: 9:26 PM
  */
 
-namespace app\Http\Controllers\Front;
+namespace app\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
-class FrontController extends Controller {
+class AdminController extends Controller {
 
     public $lang_id;
 
